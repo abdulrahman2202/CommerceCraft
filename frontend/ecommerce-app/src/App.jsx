@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
+import { Routes, Route, Link } from 'react-router-dom';
+import Home from './pages/Home';
+import Categories from './pages/Categories';
+import About from './pages/About';
+import UploadProduct from './pages/UploadProduct';
 import './index.css';
-
-const MOCK_PRODUCTS = [
-    { id: 1, title: 'Nebula Pro Keyboard', price: 149.99, image: 'https://images.unsplash.com/photo-1595225476474-87563907a212?auto=format&fit=crop&q=80&w=400' },
-    { id: 2, title: 'Void Noise-Cancelling Headphones', price: 299.99, image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&q=80&w=400' },
-    { id: 3, title: 'Aether Smartwatch', price: 199.99, image: 'https://images.unsplash.com/photo-1546868871-7041f2a55e12?auto=format&fit=crop&q=80&w=400' },
-    { id: 4, title: 'Quantum Gaming Mouse', price: 89.99, image: 'https://images.unsplash.com/photo-1527814050087-379381547969?auto=format&fit=crop&q=80&w=400' },
-];
 
 function App() {
     const [cartCount, setCartCount] = useState(0);
@@ -18,11 +16,14 @@ function App() {
     return (
         <>
             <header className="header">
-                <div className="brand">CommerceCraft</div>
+                <div className="brand">
+                    <Link to="/" style={{ color: 'inherit', textDecoration: 'none' }}>CommerceCraft</Link>
+                </div>
                 <nav className="nav-links">
-                    <a href="#" className="nav-link">Shop</a>
-                    <a href="#" className="nav-link">Categories</a>
-                    <a href="#" className="nav-link">About</a>
+                    <Link to="/" className="nav-link">Shop</Link>
+                    <Link to="/categories" className="nav-link">Categories</Link>
+                    <Link to="/about" className="nav-link">About</Link>
+                    <Link to="/upload" className="nav-link highlight-sell" style={{ color: 'var(--accent-light)', fontWeight: 600 }}>Sell Device</Link>
                 </nav>
                 <button className="cart-btn">
                     <span>🛒 Cart</span>
@@ -30,36 +31,12 @@ function App() {
                 </button>
             </header>
 
-            <main>
-                <section className="hero">
-                    <div className="hero-content">
-                        <div className="hero-badge">New Arrival</div>
-                        <h1>The Future of Personal Tech</h1>
-                        <p>Elevate your digital lifestyle with our curated collection of premium gadgets. Designed for those who demand excellence.</p>
-                        <a href="#shop" className="hero-btn">Explore Collection</a>
-                    </div>
-                </section>
-
-                <section id="shop" className="products">
-                    <h2 className="section-title">Trending Now</h2>
-                    <div className="product-grid">
-                        {MOCK_PRODUCTS.map(product => (
-                            <div key={product.id} className="product-card">
-                                <div className="product-image">
-                                    <img src={product.image} alt={product.title} className="placeholder" />
-                                </div>
-                                <div className="product-info">
-                                    <h3 className="product-title">{product.title}</h3>
-                                    <p className="product-price">${product.price}</p>
-                                    <button className="add-btn" onClick={handleAddToCart}>
-                                        Add to Cart
-                                    </button>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </section>
-            </main>
+            <Routes>
+                <Route path="/" element={<Home handleAddToCart={handleAddToCart} />} />
+                <Route path="/categories" element={<Categories />} />
+                <Route path="/about" element={<About />} />
+                <Route path="/upload" element={<UploadProduct />} />
+            </Routes>
 
             <footer className="footer">
                 <p>&copy; 2026 CommerceCraft. Designed with premium aesthetics.</p>
