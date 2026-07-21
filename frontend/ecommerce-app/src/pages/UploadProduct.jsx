@@ -1,6 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { ShopContext } from '../context/ShopContext';
 
 function UploadProduct() {
+    const { addProduct } = useContext(ShopContext);
+    const navigate = useNavigate();
+
     const [formData, setFormData] = useState({
         title: '',
         price: '',
@@ -26,8 +31,9 @@ function UploadProduct() {
         setSuccessMessage('');
 
         setTimeout(() => {
+            const newProd = addProduct(formData);
             setIsSubmitting(false);
-            setSuccessMessage('🎉 Product uploaded successfully to CommerceCraft!');
+            setSuccessMessage(`🎉 Product "${newProd.title}" uploaded successfully! Redirecting to listing...`);
             setFormData({
                 title: '',
                 price: '',
@@ -35,8 +41,13 @@ function UploadProduct() {
                 image: '',
                 description: ''
             });
-        }, 1500);
+
+            setTimeout(() => {
+                navigate(`/product/${newProd.id}`);
+            }, 1200);
+        }, 1200);
     };
+
 
     return (
         <main className="page-container min-h-screen">
