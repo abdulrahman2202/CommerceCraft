@@ -14,7 +14,7 @@ function Categories() {
                 <div className="categories-grid">
                     {['Audio', 'Gaming', 'Wearables', 'Peripherals'].map((cat, idx) => (
                         <div key={idx} className="category-card">
-                            <h3 style={{ color: '#fff', fontSize: '1.25rem', fontWeight: 700 }}>
+                            <h3 style={{ color: 'var(--text-main)', fontSize: '1.25rem', fontWeight: 700 }}>
                                 {cat}
                             </h3>
                         </div>

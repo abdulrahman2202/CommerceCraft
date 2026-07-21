@@ -53,7 +53,7 @@ function UploadProduct() {
                 <div className="upload-grid">
                     {/* Left Form Box */}
                     <div className="premium-card" style={{ margin: '0', width: '100%', maxWidth: 'none' }}>
-                        <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--accent-light)', marginBottom: '1.5rem' }}>List New Product</h2>
+                        <h2 style={{ fontSize: '1.5rem', fontWeight: 700, color: 'var(--accent)', marginBottom: '1.5rem' }}>List New Product</h2>
 
                         {successMessage && (
                             <div style={{ marginBottom: '1.5rem', padding: '1rem', borderRadius: '0.75rem', background: 'rgba(99, 102, 241, 0.1)', border: '1px solid rgba(99, 102, 241, 0.2)', color: 'var(--accent-light)', fontSize: '0.9rem' }}>
@@ -149,7 +149,7 @@ function UploadProduct() {
                     <div style={{ position: 'sticky', top: '9rem' }}>
                         <h2 style={{ fontSize: '1.25rem', fontWeight: 650, color: 'var(--text-muted)', marginBottom: '1rem' }}>Live Card Preview</h2>
                         <div className="category-card" style={{ textAlign: 'left', padding: '1.5rem', width: '100%', maxWidth: 'none', cursor: 'default' }}>
-                            <div style={{ width: '100%', aspectRatio: '1', background: 'rgba(0, 0, 0, 0.2)', border: '1px solid rgba(255, 255, 255, 0.05)', borderRadius: '0.8rem', marginBottom: '1.5rem', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+                            <div style={{ width: '100%', aspectRatio: '1', background: 'rgba(0, 0, 0, 0.03)', border: '1px solid rgba(0, 0, 0, 0.05)', borderRadius: '0.8rem', marginBottom: '1.5rem', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
                                 {formData.image ? (
                                     <img
                                         src={formData.image}
@@ -174,13 +174,13 @@ function UploadProduct() {
                             </div>
 
                             <div style={{ display: 'flex', flexDirection: 'col', gap: '0.5rem' }}>
-                                <h3 style={{ fontSize: '1.2rem', fontWeight: 650, color: 'white', margin: '0', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                <h3 style={{ fontSize: '1.2rem', fontWeight: 650, color: 'var(--text-main)', margin: '0', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                                     {formData.title || 'Your Product Title'}
                                 </h3>
                                 <p style={{ color: 'var(--accent-light)', fontSize: '1.1rem', fontWeight: 600, margin: '0.25rem 0 0.75rem 0' }}>
                                     ${formData.price ? parseFloat(formData.price).toFixed(2) : '0.00'}
                                 </p>
-                                <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem', lineHeight: '1.5', background: 'rgba(0, 0, 0, 0.1)', padding: '0.75rem', borderRadius: '0.5rem', border: '1px solid rgba(255, 255, 255, 0.05)', minHeight: '76px', margin: '0' }}>
+                                <p style={{ color: 'var(--text-muted)', fontSize: '0.875rem', lineHeight: '1.5', background: 'rgba(0, 0, 0, 0.02)', padding: '0.75rem', borderRadius: '0.5rem', border: '1px solid rgba(0, 0, 0, 0.05)', minHeight: '76px', margin: '0' }}>
                                     {formData.description || 'Provide a compelling description of the premium gadget on the left.'}
                                 </p>
                                 <button className="add-btn" style={{ width: '100%', marginTop: '1rem', cursor: 'not-allowed' }} disabled>
