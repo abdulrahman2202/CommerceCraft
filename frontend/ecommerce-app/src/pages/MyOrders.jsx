@@ -58,7 +58,7 @@ function MyOrders() {
                                         padding: '1.5rem 2rem',
                                         display: 'flex',
                                         alignItems: 'center',
-                                        justifyContent: 'between',
+                                        justifyContent: 'space-between',
                                         flexWrap: 'wrap',
                                         gap: '1.5rem'
                                     }}

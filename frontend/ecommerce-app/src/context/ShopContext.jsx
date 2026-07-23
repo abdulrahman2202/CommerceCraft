@@ -59,6 +59,62 @@ export const ShopContextProvider = ({ children }) => {
         return [];
     });
 
+    // Profile State
+    const [userProfile, setUserProfile] = useState(() => {
+        const stored = localStorage.getItem('commerce_profile');
+        if (stored) {
+            try {
+                return JSON.parse(stored);
+            } catch (e) {
+                console.error("Failed to parse stored profile", e);
+            }
+        }
+        return { name: 'John Doe', email: 'john@example.com', phone: '+1 (555) 019-2834', avatar: 'JD' };
+    });
+
+    // Saved Addresses State
+    const [savedAddresses, setSavedAddresses] = useState(() => {
+        const stored = localStorage.getItem('commerce_addresses');
+        if (stored) {
+            try {
+                return JSON.parse(stored);
+            } catch (e) {
+                console.error("Failed to parse stored addresses", e);
+            }
+        }
+        return [
+            { id: 1, label: 'Default Home', name: 'John Doe', address: '123 Creator Lane, Apt 4B', city: 'San Francisco', zip: '94103', phone: '+1 (555) 019-2834' }
+        ];
+    });
+
+    // Saved Payment Methods State
+    const [savedPayments, setSavedPayments] = useState(() => {
+        const stored = localStorage.getItem('commerce_payments');
+        if (stored) {
+            try {
+                return JSON.parse(stored);
+            } catch (e) {
+                console.error("Failed to parse stored payments", e);
+            }
+        }
+        return [
+            { id: 1, label: 'Primary Card', name: 'John Doe', cardNum: '•••• •••• •••• 4111', expiry: '12/28', type: 'Visa' }
+        ];
+    });
+
+    // Notification Settings State
+    const [notificationRules, setNotificationRules] = useState(() => {
+        const stored = localStorage.getItem('commerce_notifications');
+        if (stored) {
+            try {
+                return JSON.parse(stored);
+            } catch (e) {
+                console.error("Failed to parse stored notifications", e);
+            }
+        }
+        return { orderUpdates: true, weeklyDeals: false, securityAlerts: true };
+    });
+
     // Sync to localStorage
     useEffect(() => {
         localStorage.setItem('commerce_products', JSON.stringify(products));
@@ -75,6 +131,22 @@ export const ShopContextProvider = ({ children }) => {
     useEffect(() => {
         localStorage.setItem('commerce_orders', JSON.stringify(orders));
     }, [orders]);
+
+    useEffect(() => {
+        localStorage.setItem('commerce_profile', JSON.stringify(userProfile));
+    }, [userProfile]);
+
+    useEffect(() => {
+        localStorage.setItem('commerce_addresses', JSON.stringify(savedAddresses));
+    }, [savedAddresses]);
+
+    useEffect(() => {
+        localStorage.setItem('commerce_payments', JSON.stringify(savedPayments));
+    }, [savedPayments]);
+
+    useEffect(() => {
+        localStorage.setItem('commerce_notifications', JSON.stringify(notificationRules));
+    }, [notificationRules]);
 
     // Cart Interactions
     const addToCart = (productId, quantity = 1) => {
@@ -181,6 +253,53 @@ export const ShopContextProvider = ({ children }) => {
     const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
     const wishlistCount = wishlist.length;
 
+    // Profile actions
+    const updateProfile = (profileData) => {
+        setUserProfile(prev => {
+            const initials = profileData.name ? profileData.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase() : 'JD';
+            return {
+                ...prev,
+                ...profileData,
+                avatar: initials || 'JD'
+            };
+        });
+    };
+
+    const addAddress = (addressObj) => {
+        setSavedAddresses(prev => [
+            ...prev,
+            {
+                id: prev.length > 0 ? Math.max(...prev.map(a => a.id)) + 1 : 1,
+                ...addressObj
+            }
+        ]);
+    };
+
+    const removeAddress = (addressId) => {
+        setSavedAddresses(prev => prev.filter(a => a.id !== addressId));
+    };
+
+    const addPayment = (paymentObj) => {
+        setSavedPayments(prev => [
+            ...prev,
+            {
+                id: prev.length > 0 ? Math.max(...prev.map(p => p.id)) + 1 : 1,
+                ...paymentObj
+            }
+        ]);
+    };
+
+    const removePayment = (paymentId) => {
+        setSavedPayments(prev => prev.filter(p => p.id !== paymentId));
+    };
+
+    const updateNotifications = (settingKey, value) => {
+        setNotificationRules(prev => ({
+            ...prev,
+            [settingKey]: value
+        }));
+    };
+
     const value = {
         products,
         cart,
@@ -196,7 +315,17 @@ export const ShopContextProvider = ({ children }) => {
         updateCartQuantity,
         clearCart,
         toggleWishlist,
-        addProduct
+        addProduct,
+        userProfile,
+        savedAddresses,
+        savedPayments,
+        notificationRules,
+        updateProfile,
+        addAddress,
+        removeAddress,
+        addPayment,
+        removePayment,
+        updateNotifications
     };
 
     return (

@@ -16,6 +16,7 @@ import OrderSuccess from './pages/OrderSuccess';
 import OrderFailed from './pages/OrderFailed';
 import MyOrders from './pages/MyOrders';
 import OrderDetails from './pages/OrderDetails';
+import Profile from './pages/Profile';
 import './index.css';
 
 function AppContent() {
@@ -60,7 +61,7 @@ function AppContent() {
                 </div>
 
                 <nav className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
-                    <Link to="/products" className="nav-link">Shop All</Link>
+                    <Link to="/products" className="nav-link" style={{ marginLeft: '1rem' }}>Shop All</Link>
                     <Link to="/categories" className="nav-link">Categories</Link>
                     <Link to="/orders" className="nav-link">My Orders</Link>
                     <Link to="/about" className="nav-link">About</Link>
@@ -85,6 +86,10 @@ function AppContent() {
                             </span>
                         )}
                     </Link>
+
+                    <Link to="/profile" className="cart-btn" style={{ textDecoration: 'none' }}>
+                        <span>👤 Profile</span>
+                    </Link>
                 </div>
             </header>
 
@@ -104,6 +109,7 @@ function AppContent() {
                 <Route path="/order-failed" element={<OrderFailed />} />
                 <Route path="/orders" element={<MyOrders />} />
                 <Route path="/order/:orderId" element={<OrderDetails />} />
+                <Route path="/profile" element={<Profile />} />
             </Routes>
 
             <footer className="footer">
