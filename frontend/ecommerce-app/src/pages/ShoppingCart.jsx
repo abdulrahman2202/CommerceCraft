@@ -259,13 +259,20 @@ function ShoppingCart() {
                                     }}>{promoFeedback}</div>
                                 )}
 
-                                <button
+                                <Link
+                                    to="/checkout"
                                     className="form-button"
-                                    style={{ width: '100%', padding: '1rem', fontWeight: 700 }}
-                                    onClick={handleCheckout}
+                                    style={{
+                                        width: '100%',
+                                        padding: '1rem',
+                                        fontWeight: 700,
+                                        display: 'block',
+                                        textAlign: 'center',
+                                        textDecoration: 'none'
+                                    }}
                                 >
                                     Proceed to Checkout
-                                </button>
+                                </Link>
 
                                 <p style={{ fontSize: '0.75rem', color: 'var(--text-muted)', textAlign: 'center', marginTop: '1rem', lineHeight: '1.4' }}>
                                     🔒 Safe & Secure Checkout. Free delivery on orders over $150.

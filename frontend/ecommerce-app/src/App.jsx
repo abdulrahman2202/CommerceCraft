@@ -11,6 +11,11 @@ import Wishlist from './pages/Wishlist';
 import ShoppingCart from './pages/ShoppingCart';
 import About from './pages/About';
 import UploadProduct from './pages/UploadProduct';
+import Checkout from './pages/Checkout';
+import OrderSuccess from './pages/OrderSuccess';
+import OrderFailed from './pages/OrderFailed';
+import MyOrders from './pages/MyOrders';
+import OrderDetails from './pages/OrderDetails';
 import './index.css';
 
 function AppContent() {
@@ -57,6 +62,7 @@ function AppContent() {
                 <nav className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
                     <Link to="/products" className="nav-link">Shop All</Link>
                     <Link to="/categories" className="nav-link">Categories</Link>
+                    <Link to="/orders" className="nav-link">My Orders</Link>
                     <Link to="/about" className="nav-link">About</Link>
                     <Link to="/upload" className="nav-link highlight-sell" style={{ color: 'var(--accent-light)', fontWeight: 600 }}>Sell Device</Link>
                 </nav>
@@ -93,6 +99,11 @@ function AppContent() {
                 <Route path="/cart" element={<ShoppingCart />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/upload" element={<UploadProduct />} />
+                <Route path="/checkout" element={<Checkout />} />
+                <Route path="/order-success/:orderId" element={<OrderSuccess />} />
+                <Route path="/order-failed" element={<OrderFailed />} />
+                <Route path="/orders" element={<MyOrders />} />
+                <Route path="/order/:orderId" element={<OrderDetails />} />
             </Routes>
 
             <footer className="footer">

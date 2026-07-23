@@ -46,6 +46,19 @@ export const ShopContextProvider = ({ children }) => {
     // Search Query State
     const [searchQuery, setSearchQuery] = useState('');
 
+    // Orders State: Array of orderObjects
+    const [orders, setOrders] = useState(() => {
+        const stored = localStorage.getItem('commerce_orders');
+        if (stored) {
+            try {
+                return JSON.parse(stored);
+            } catch (e) {
+                console.error("Failed to parse stored orders", e);
+            }
+        }
+        return [];
+    });
+
     // Sync to localStorage
     useEffect(() => {
         localStorage.setItem('commerce_products', JSON.stringify(products));
@@ -58,6 +71,10 @@ export const ShopContextProvider = ({ children }) => {
     useEffect(() => {
         localStorage.setItem('commerce_wishlist', JSON.stringify(wishlist));
     }, [wishlist]);
+
+    useEffect(() => {
+        localStorage.setItem('commerce_orders', JSON.stringify(orders));
+    }, [orders]);
 
     // Cart Interactions
     const addToCart = (productId, quantity = 1) => {
@@ -132,6 +149,34 @@ export const ShopContextProvider = ({ children }) => {
         return newProduct;
     };
 
+    const placeOrder = (orderDetails) => {
+        const dateObj = new Date();
+        const year = dateObj.getFullYear();
+        const month = String(dateObj.getMonth() + 1).padStart(2, '0');
+        const day = String(dateObj.getDate()).padStart(2, '0');
+        const randomHex = Math.floor(1000 + Math.random() * 9000);
+        const orderId = `CC-${year}${month}${day}-${randomHex}`;
+
+        const newOrder = {
+            id: orderId,
+            date: dateObj.toLocaleDateString() + ' ' + dateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+            status: 'Processing',
+            items: orderDetails.items,
+            shippingAddress: orderDetails.shippingAddress,
+            financials: {
+                subtotal: orderDetails.subtotal,
+                discount: orderDetails.discount,
+                shipping: orderDetails.shipping,
+                tax: orderDetails.tax,
+                total: orderDetails.total
+            }
+        };
+
+        setOrders(prev => [newOrder, ...prev]);
+        clearCart();
+        return newOrder;
+    };
+
     // Derived counts
     const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
     const wishlistCount = wishlist.length;
@@ -142,6 +187,8 @@ export const ShopContextProvider = ({ children }) => {
         wishlist,
         searchQuery,
         setSearchQuery,
+        orders,
+        placeOrder,
         cartCount,
         wishlistCount,
         addToCart,
