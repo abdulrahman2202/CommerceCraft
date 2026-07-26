@@ -5,17 +5,29 @@ import { ShopContext } from '../context/ShopContext';
 function ProductDetails() {
     const { id } = useParams();
     const navigate = useNavigate();
-    const { products, addToCart, wishlist, toggleWishlist } = useContext(ShopContext);
+    const {
+        products,
+        addToCart,
+        wishlist,
+        toggleWishlist,
+        userProfile,
+        addToRecentlyViewed,
+        reviews,
+        addProductReview
+    } = useContext(ShopContext);
     const [quantity, setQuantity] = useState(1);
 
     // Find product
     const product = products.find(p => p.id === Number(id));
 
-    // Scroll to top when product ID changes
+    // Scroll to top and add to recently viewed when product ID changes
     useEffect(() => {
+        if (product) {
+            addToRecentlyViewed(product.id);
+        }
         window.scrollTo(0, 0);
         setQuantity(1);
-    }, [id]);
+    }, [id, product]);
 
     if (!product) {
         return (
@@ -239,9 +251,52 @@ function ProductDetails() {
                     </div>
                 </div>
 
+                <hr style={{ border: '0', borderTop: '1px solid rgba(0,0,0,0.08)', margin: '3rem 0' }} />
+
+                {/* Interactive Reviews Section */}
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '3rem', margin: '3rem 0' }} className="upload-grid">
+
+                    {/* Reviews List */}
+                    <div className="premium-card" style={{ margin: 0, width: '100%', maxWidth: 'none', padding: '2rem' }}>
+                        <h3 style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '1.5rem' }}>
+                            Customer Reviews ({reviews.filter(r => r.productId === product.id).length})
+                        </h3>
+
+                        {reviews.filter(r => r.productId === product.id).length === 0 ? (
+                            <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', margin: 0 }}>
+                                No reviews registered for this device yet. Be the first to share your experience!
+                            </p>
+                        ) : (
+                            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                                {reviews.filter(r => r.productId === product.id).map((rev) => (
+                                    <div key={rev.id} style={{ borderBottom: '1px solid rgba(0,0,0,0.05)', paddingBottom: '1.2rem' }}>
+                                        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '0.4rem', flexWrap: 'wrap', gap: '0.5rem' }}>
+                                            <span style={{ fontWeight: 700, fontSize: '0.95rem', color: 'var(--text-main)' }}>{rev.name}</span>
+                                            <span style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>{rev.date}</span>
+                                        </div>
+                                        <div style={{ color: '#fbbf24', fontSize: '0.95rem', marginBottom: '0.5rem' }}>
+                                            {'★'.repeat(rev.rating)}{'☆'.repeat(5 - rev.rating)}
+                                        </div>
+                                        <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--text-muted)', lineHeight: '1.6' }}>{rev.comment}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        )}
+                    </div>
+
+                    {/* Write a Review Form */}
+                    <div className="premium-card" style={{ margin: 0, width: '100%', maxWidth: 'none', padding: '2rem' }}>
+                        <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--accent)', marginBottom: '1.2rem' }}>Add a Review</h3>
+                        <ReviewForm productId={product.id} addProductReview={addProductReview} defaultName={userProfile?.name || ''} />
+                    </div>
+
+                </div>
+
+                <hr style={{ border: '0', borderTop: '1px solid rgba(0,0,0,0.08)', margin: '3rem 0' }} />
+
                 {/* Related Products Carousel */}
                 {relatedProducts.length > 0 && (
-                    <div style={{ marginTop: '5rem', marginBottom: '2rem' }}>
+                    <div style={{ marginTop: '3rem', marginBottom: '2rem' }}>
                         <h2 style={{ fontSize: '1.75rem', fontWeight: 700, marginBottom: '2rem', textAlign: 'center' }}>You May Also Like</h2>
                         <div className="product-grid" style={{ gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))' }}>
                             {relatedProducts.map(p => (
@@ -267,6 +322,97 @@ function ProductDetails() {
                 )}
             </div>
         </main>
+    );
+}
+
+function ReviewForm({ productId, addProductReview, defaultName }) {
+    const [name, setName] = useState(defaultName || '');
+    const [rating, setRating] = useState(5);
+    const [comment, setComment] = useState('');
+    const [error, setError] = useState('');
+    const [success, setSuccess] = useState('');
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if (!name.trim()) {
+            setError('Please provide a name.');
+            return;
+        }
+        if (!comment.trim()) {
+            setError('Please write a review comment.');
+            return;
+        }
+        setError('');
+        addProductReview(productId, { name, rating, comment });
+        setSuccess('🎉 Review posted successfully! Thank you.');
+        setComment('');
+        setTimeout(() => setSuccess(''), 3000);
+    };
+
+    return (
+        <form onSubmit={handleSubmit}>
+            {error && (
+                <div style={{ marginBottom: '1rem', padding: '0.75rem', borderRadius: '0.5rem', background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', fontSize: '0.85rem' }}>
+                    {error}
+                </div>
+            )}
+            {success && (
+                <div style={{ marginBottom: '1rem', padding: '0.75rem', borderRadius: '0.5rem', background: 'rgba(16, 185, 129, 0.1)', color: '#10b981', fontSize: '0.85rem' }}>
+                    {success}
+                </div>
+            )}
+
+            <div className="form-group">
+                <label className="form-label">Your Name</label>
+                <input
+                    type="text"
+                    required
+                    placeholder="E.g. Jane Smith"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="form-input"
+                />
+            </div>
+
+            <div className="form-group">
+                <label className="form-label">Rating (1 to 5 Stars)</label>
+                <div style={{ display: 'flex', gap: '0.5rem', fontSize: '1.5rem', margin: '0.5rem 0' }}>
+                    {[1, 2, 3, 4, 5].map((star) => (
+                        <button
+                            key={star}
+                            type="button"
+                            onClick={() => setRating(star)}
+                            style={{
+                                background: 'transparent',
+                                border: 'none',
+                                cursor: 'pointer',
+                                color: star <= rating ? '#fbbf24' : '#d1d5db',
+                                padding: 0
+                            }}
+                        >
+                            ★
+                        </button>
+                    ))}
+                </div>
+            </div>
+
+            <div className="form-group" style={{ marginBottom: '1.5rem' }}>
+                <label className="form-label">Review Comment</label>
+                <textarea
+                    required
+                    placeholder="Share your thoughts about this high-performance device..."
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                    className="form-input"
+                    rows="4"
+                    style={{ resize: 'vertical', minHeight: '80px' }}
+                />
+            </div>
+
+            <button type="submit" className="form-button" style={{ width: '100%' }}>
+                Submit Review
+            </button>
+        </form>
     );
 }
 

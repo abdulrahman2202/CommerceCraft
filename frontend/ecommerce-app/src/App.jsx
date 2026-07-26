@@ -17,6 +17,9 @@ import OrderFailed from './pages/OrderFailed';
 import MyOrders from './pages/MyOrders';
 import OrderDetails from './pages/OrderDetails';
 import Profile from './pages/Profile';
+import RecentlyViewed from './pages/RecentlyViewed';
+import HelpCenter from './pages/HelpCenter';
+import Contact from './pages/Contact';
 import './index.css';
 
 function AppContent() {
@@ -110,10 +113,53 @@ function AppContent() {
                 <Route path="/orders" element={<MyOrders />} />
                 <Route path="/order/:orderId" element={<OrderDetails />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/recently-viewed" element={<RecentlyViewed />} />
+                <Route path="/help" element={<HelpCenter />} />
+                <Route path="/contact" element={<Contact />} />
             </Routes>
 
-            <footer className="footer">
-                <p>&copy; 2026 CommerceCraft. Designed with premium aesthetics.</p>
+            <footer className="footer" style={{ borderTop: '1px solid var(--glass-border)', background: 'var(--glass-bg)', padding: '3.5rem 1.5rem', marginTop: '6rem' }}>
+                <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', flexWrap: 'wrap', gap: '3rem', justifyContent: 'space-between' }}>
+                    <div style={{ flex: '1 1 250px' }}>
+                        <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-main)', marginBottom: '1rem' }}>CommerceCraft</h3>
+                        <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: '1.6', margin: 0 }}>
+                            State-of-the-art e-commerce gateway offering premium, verified hardware, custom mechanical input layouts, and acoustics solutions.
+                        </p>
+                    </div>
+
+                    <div style={{ display: 'flex', gap: '4rem', flexWrap: 'wrap' }}>
+                        <div>
+                            <h4 style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--accent-light)', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Shop & Browse</h4>
+                            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.85rem' }}>
+                                <li><Link to="/products" className="nav-link" style={{ padding: 0 }}>All Gadgets</Link></li>
+                                <li><Link to="/categories" className="nav-link" style={{ padding: 0 }}>Categories</Link></li>
+                                <li><Link to="/recently-viewed" className="nav-link" style={{ padding: 0 }}>Recently Viewed</Link></li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--accent-light)', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Support Hub</h4>
+                            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.85rem' }}>
+                                <li><Link to="/help" className="nav-link" style={{ padding: 0 }}>Help Center FAQs</Link></li>
+                                <li><Link to="/contact" className="nav-link" style={{ padding: 0 }}>Contact Support</Link></li>
+                                <li><Link to="/about" className="nav-link" style={{ padding: 0 }}>About Us</Link></li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--accent-light)', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Account</h4>
+                            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.85rem' }}>
+                                <li><Link to="/profile" className="nav-link" style={{ padding: 0 }}>My Account</Link></li>
+                                <li><Link to="/orders" className="nav-link" style={{ padding: 0 }}>Order History</Link></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div style={{ maxWidth: '1100px', margin: '2.5rem auto 0 auto', paddingTop: '1.5rem', borderTop: '1px solid rgba(0,0,0,0.06)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                    <span>&copy; {new Date().getFullYear()} CommerceCraft. Designed with premium aesthetics.</span>
+                    <span>Safe & Secure Checkouts guaranteed</span>
+                </div>
             </footer>
         </>
     );

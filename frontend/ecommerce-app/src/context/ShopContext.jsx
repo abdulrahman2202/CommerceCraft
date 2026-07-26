@@ -115,6 +115,37 @@ export const ShopContextProvider = ({ children }) => {
         return { orderUpdates: true, weeklyDeals: false, securityAlerts: true };
     });
 
+    // Recently Viewed State: Array of IDs (capped at 6)
+    const [recentlyViewed, setRecentlyViewed] = useState(() => {
+        const stored = localStorage.getItem('commerce_recently_viewed');
+        if (stored) {
+            try {
+                return JSON.parse(stored);
+            } catch (e) {
+                console.error("Failed to parse stored recently viewed products", e);
+            }
+        }
+        return [];
+    });
+
+    // Reviews State: Array of review objects
+    const [reviews, setReviews] = useState(() => {
+        const stored = localStorage.getItem('commerce_reviews');
+        if (stored) {
+            try {
+                return JSON.parse(stored);
+            } catch (e) {
+                console.error("Failed to parse stored reviews", e);
+            }
+        }
+        return [
+            { id: 1, productId: 1, name: 'Ava R.', rating: 5, comment: 'Phenomenal tactile layout! The RGB light customization profiles are absolutely gorgeous. Best mechanical keyboard I have ever handled.', date: '7/22/2026' },
+            { id: 2, productId: 1, name: 'Marcus L.', rating: 4, comment: 'High grade construction materials. Key presses sound very clean. Only critique is lack of detailed battery indicators.', date: '7/23/2026' },
+            { id: 3, productId: 2, name: 'Gavin D.', rating: 5, comment: 'Incredible acoustic range! Active Noise Cancelling isolates sound perfectly in loud office settings. Worth every penny.', date: '7/21/2026' },
+            { id: 4, productId: 3, name: 'Elena S.', rating: 5, comment: 'Sleek dark finish matches my professional desk setup perfectly. The charging stand is very convenient.', date: '7/19/2026' }
+        ];
+    });
+
     // Sync to localStorage
     useEffect(() => {
         localStorage.setItem('commerce_products', JSON.stringify(products));
@@ -147,6 +178,14 @@ export const ShopContextProvider = ({ children }) => {
     useEffect(() => {
         localStorage.setItem('commerce_notifications', JSON.stringify(notificationRules));
     }, [notificationRules]);
+
+    useEffect(() => {
+        localStorage.setItem('commerce_recently_viewed', JSON.stringify(recentlyViewed));
+    }, [recentlyViewed]);
+
+    useEffect(() => {
+        localStorage.setItem('commerce_reviews', JSON.stringify(reviews));
+    }, [reviews]);
 
     // Cart Interactions
     const addToCart = (productId, quantity = 1) => {
@@ -300,6 +339,43 @@ export const ShopContextProvider = ({ children }) => {
         }));
     };
 
+    const addToRecentlyViewed = (productId) => {
+        const id = Number(productId);
+        setRecentlyViewed(prev => {
+            const filtered = prev.filter(pId => pId !== id);
+            return [id, ...filtered].slice(0, 6);
+        });
+    };
+
+    const addProductReview = (productId, reviewData) => {
+        const id = Number(productId);
+        const newReview = {
+            id: Date.now(),
+            productId: id,
+            name: reviewData.name,
+            rating: Number(reviewData.rating) || 5,
+            comment: reviewData.comment || '',
+            date: new Date().toLocaleDateString()
+        };
+
+        setReviews(prev => [newReview, ...prev]);
+
+        // Dynamically recalculate average rating and reviewCount for products catalog
+        setProducts(prevProducts => prevProducts.map(p => {
+            if (p.id === id) {
+                const nextReviewCount = (p.reviewCount || 0) + 1;
+                const currentRating = p.rating || 4.5;
+                const nextRating = Number(((currentRating * (nextReviewCount - 1) + Number(reviewData.rating)) / nextReviewCount).toFixed(1));
+                return {
+                    ...p,
+                    reviewCount: nextReviewCount,
+                    rating: nextRating
+                };
+            }
+            return p;
+        }));
+    };
+
     const value = {
         products,
         cart,
@@ -325,7 +401,11 @@ export const ShopContextProvider = ({ children }) => {
         removeAddress,
         addPayment,
         removePayment,
-        updateNotifications
+        updateNotifications,
+        recentlyViewed,
+        reviews,
+        addToRecentlyViewed,
+        addProductReview
     };
 
     return (
