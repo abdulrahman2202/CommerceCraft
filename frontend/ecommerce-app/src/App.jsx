@@ -20,7 +20,18 @@ import Profile from './pages/Profile';
 import RecentlyViewed from './pages/RecentlyViewed';
 import HelpCenter from './pages/HelpCenter';
 import Contact from './pages/Contact';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import ForgotPassword from './pages/ForgotPassword';
+import ResetPassword from './pages/ResetPassword';
+import VerifyEmail from './pages/VerifyEmail';
+import VerifyOTP from './pages/VerifyOTP';
+import TwoFactorAuth from './pages/TwoFactorAuth';
+import ChangePassword from './pages/ChangePassword';
+import SellerLogin from './pages/SellerLogin';
+import AdminLogin from './pages/AdminLogin';
 import './index.css';
+
 
 function AppContent() {
     const { cartCount, wishlistCount, setSearchQuery } = useContext(ShopContext);
@@ -90,6 +101,10 @@ function AppContent() {
                         )}
                     </Link>
 
+                    <Link to="/login" className="cart-btn" style={{ textDecoration: 'none' }}>
+                        <span>🔑 Sign In</span>
+                    </Link>
+
                     <Link to="/profile" className="cart-btn" style={{ textDecoration: 'none' }}>
                         <span>👤 Profile</span>
                     </Link>
@@ -116,6 +131,18 @@ function AppContent() {
                 <Route path="/recently-viewed" element={<RecentlyViewed />} />
                 <Route path="/help" element={<HelpCenter />} />
                 <Route path="/contact" element={<Contact />} />
+
+                {/* Authentication Routes */}
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/forgot-password" element={<ForgotPassword />} />
+                <Route path="/reset-password" element={<ResetPassword />} />
+                <Route path="/verify-email" element={<VerifyEmail />} />
+                <Route path="/verify-otp" element={<VerifyOTP />} />
+                <Route path="/two-factor" element={<TwoFactorAuth />} />
+                <Route path="/change-password" element={<ChangePassword />} />
+                <Route path="/seller-login" element={<SellerLogin />} />
+                <Route path="/admin-login" element={<AdminLogin />} />
             </Routes>
 
             <footer className="footer" style={{ borderTop: '1px solid var(--glass-border)', background: 'var(--glass-bg)', padding: '3.5rem 1.5rem', marginTop: '6rem' }}>
@@ -151,6 +178,10 @@ function AppContent() {
                             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.85rem' }}>
                                 <li><Link to="/profile" className="nav-link" style={{ padding: 0 }}>My Account</Link></li>
                                 <li><Link to="/orders" className="nav-link" style={{ padding: 0 }}>Order History</Link></li>
+                                <li><Link to="/login" className="nav-link" style={{ padding: 0 }}>Sign In</Link></li>
+                                <li><Link to="/register" className="nav-link" style={{ padding: 0 }}>Register</Link></li>
+                                <li><Link to="/change-password" className="nav-link" style={{ padding: 0 }}>Change Password</Link></li>
+                                <li><Link to="/two-factor" className="nav-link" style={{ padding: 0 }}>Two-Factor Auth</Link></li>
                             </ul>
                         </div>
                     </div>
