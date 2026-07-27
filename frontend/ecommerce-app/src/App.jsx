@@ -79,7 +79,6 @@ function AppContent() {
                     <Link to="/categories" className="nav-link">Categories</Link>
                     <Link to="/orders" className="nav-link">My Orders</Link>
                     <Link to="/about" className="nav-link">About</Link>
-                    <Link to="/upload" className="nav-link highlight-sell" style={{ color: 'var(--accent-light)', fontWeight: 600 }}>Sell Device</Link>
                 </nav>
 
                 <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginLeft: '2rem' }}>
@@ -161,6 +160,7 @@ function AppContent() {
                                 <li><Link to="/products" className="nav-link" style={{ padding: 0 }}>All Gadgets</Link></li>
                                 <li><Link to="/categories" className="nav-link" style={{ padding: 0 }}>Categories</Link></li>
                                 <li><Link to="/recently-viewed" className="nav-link" style={{ padding: 0 }}>Recently Viewed</Link></li>
+                                <li><Link to="/upload" className="nav-link" style={{ padding: 0 }}>Sell</Link></li>
                             </ul>
                         </div>
 
