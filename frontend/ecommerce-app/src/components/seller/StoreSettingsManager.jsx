@@ -414,6 +414,9 @@ function StoreSettingsManager({
         </div>
     );
 
+    const allowed = ['messages', 'store_profile', 'store_settings', 'seller_support'];
+    if (!allowed.includes(activeSubTab)) return null;
+
     switch (activeSubTab) {
         case 'messages':
             return renderMessages();
@@ -424,7 +427,7 @@ function StoreSettingsManager({
         case 'seller_support':
             return renderSellerSupport();
         default:
-            return renderMessages();
+            return null;
     }
 }
 

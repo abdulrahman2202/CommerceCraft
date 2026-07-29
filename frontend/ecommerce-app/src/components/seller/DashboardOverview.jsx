@@ -239,6 +239,9 @@ function DashboardOverview({ activeSubTab, notifications, setNotifications, orde
         </div>
     );
 
+    const allowed = ['dashboard', 'analytics', 'notifications'];
+    if (!allowed.includes(activeSubTab)) return null;
+
     switch (activeSubTab) {
         case 'dashboard':
             return renderDashboard();
@@ -247,7 +250,7 @@ function DashboardOverview({ activeSubTab, notifications, setNotifications, orde
         case 'notifications':
             return renderNotifications();
         default:
-            return renderDashboard();
+            return null;
     }
 }
 

@@ -320,6 +320,9 @@ function FinancialsManager({
         </div>
     );
 
+    const allowed = ['coupons', 'payouts', 'transactions'];
+    if (!allowed.includes(activeSubTab)) return null;
+
     switch (activeSubTab) {
         case 'coupons':
             return renderCoupons();
@@ -328,7 +331,7 @@ function FinancialsManager({
         case 'transactions':
             return renderTransactions();
         default:
-            return renderTransactions();
+            return null;
     }
 }
 

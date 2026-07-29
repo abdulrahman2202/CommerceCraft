@@ -162,7 +162,7 @@ function SellerDashboard() {
     ];
 
     return (
-        <main className="page-container" style={{ display: 'flex', minHeight: '100vh', width: '100%', gap: '2rem', padding: '2rem 1.5rem', maxWidth: '1200px', margin: '0 auto', flexWrap: 'wrap' }}>
+        <main className="page-container" style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', textAlign: 'left', minHeight: '100vh', width: '100%', gap: '2rem', padding: '2rem 1.5rem', maxWidth: '1200px', margin: '0 auto', flexWrap: 'wrap' }}>
 
             {/* Sidebar Navigation */}
             <aside style={{ flex: '1 1 240px', minWidth: '240px' }}>

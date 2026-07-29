@@ -506,6 +506,9 @@ function ProductsManager({
         </div>
     );
 
+    const allowed = ['products', 'product_details', 'add_product', 'edit_product', 'inventory', 'categories'];
+    if (!allowed.includes(activeSubTab)) return null;
+
     switch (activeSubTab) {
         case 'products':
             return renderProductsList();
@@ -519,7 +522,7 @@ function ProductsManager({
         case 'categories':
             return renderCategories();
         default:
-            return renderProductsList();
+            return null;
     }
 }
 

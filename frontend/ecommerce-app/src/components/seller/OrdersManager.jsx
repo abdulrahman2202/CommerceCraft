@@ -293,6 +293,9 @@ function OrdersManager({
         </div>
     );
 
+    const allowed = ['orders', 'order_details', 'customers', 'reviews'];
+    if (!allowed.includes(activeSubTab)) return null;
+
     switch (activeSubTab) {
         case 'orders':
             return renderOrdersList();
@@ -303,7 +306,7 @@ function OrdersManager({
         case 'reviews':
             return renderReviews();
         default:
-            return renderOrdersList();
+            return null;
     }
 }
 
