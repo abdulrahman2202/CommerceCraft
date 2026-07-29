@@ -28,6 +28,7 @@ import VerifyEmail from './pages/VerifyEmail';
 import VerifyOTP from './pages/VerifyOTP';
 import TwoFactorAuth from './pages/TwoFactorAuth';
 import ChangePassword from './pages/ChangePassword';
+import SellerDashboard from './pages/SellerDashboard';
 import SellerLogin from './pages/SellerLogin';
 import AdminLogin from './pages/AdminLogin';
 import './index.css';
@@ -142,6 +143,7 @@ function AppContent() {
                 <Route path="/change-password" element={<ChangePassword />} />
                 <Route path="/seller-login" element={<SellerLogin />} />
                 <Route path="/admin-login" element={<AdminLogin />} />
+                <Route path="/seller-dashboard" element={<SellerDashboard />} />
             </Routes>
 
             <footer className="footer" style={{ borderTop: '1px solid var(--glass-border)', background: 'var(--glass-bg)', padding: '3.5rem 1.5rem', marginTop: '6rem' }}>

@@ -30,7 +30,7 @@ function SellerLogin() {
 
             // Redirect user or simulate dashboard loading after 1.5 seconds
             setTimeout(() => {
-                navigate('/profile?tab=sell_profile');
+                navigate('/seller-dashboard');
             }, 1500);
         }, 1200);
     };
