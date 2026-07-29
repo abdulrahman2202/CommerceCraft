@@ -34,7 +34,7 @@ function ProductsManager({
             const product = products.find(p => p.id === selectedProductId);
             if (product) {
                 setFormValues({
-                    name: product.name,
+                    name: product.name || product.title || '',
                     category: product.category,
                     price: product.price,
                     stock: product.stock,
@@ -89,8 +89,9 @@ function ProductsManager({
 
         if (activeSubTab === 'add_product') {
             const newProduct = {
-                id: `PRD-${Math.floor(1000 + Math.random() * 9000)}`,
+                id: products.length > 0 ? Math.max(...products.map(p => Number(p.id) || 0)) + 1 : 1,
                 name,
+                title: name,
                 category,
                 price: priceNum,
                 stock: stockNum,
@@ -112,6 +113,7 @@ function ProductsManager({
                     return {
                         ...p,
                         name,
+                        title: name,
                         category,
                         price: priceNum,
                         stock: stockNum,
@@ -189,10 +191,10 @@ function ProductsManager({
                         {products.map(p => (
                             <tr key={p.id} style={{ borderBottom: '1px solid rgba(0,0,0,0.05)', fontSize: '0.9rem', color: 'var(--text-main)' }}>
                                 <td style={{ padding: '0.75rem 0.5rem' }}>
-                                    <img src={p.image} alt={p.name} style={{ width: '45px', height: '45px', objectFit: 'cover', borderRadius: '0.5rem' }} />
+                                    <img src={p.image} alt={p.name || p.title || ''} style={{ width: '45px', height: '45px', objectFit: 'cover', borderRadius: '0.5rem' }} />
                                 </td>
                                 <td style={{ padding: '0.75rem 0.5rem' }}>
-                                    <div style={{ fontWeight: 650 }}>{p.name}</div>
+                                    <div style={{ fontWeight: 650 }}>{p.name || p.title || ''}</div>
                                     <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{p.id}</span>
                                 </td>
                                 <td style={{ padding: '0.75rem 0.5rem' }}>{p.category}</td>
@@ -229,14 +231,14 @@ function ProductsManager({
                 </button>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '2.5rem' }}>
                     <div>
-                        <img src={selectedProduct.image} alt={selectedProduct.name} style={{ width: '100%', borderRadius: '1rem', border: '1px solid rgba(0,0,0,0.06)' }} />
+                        <img src={selectedProduct.image} alt={selectedProduct.name || selectedProduct.title || ''} style={{ width: '100%', borderRadius: '1rem', border: '1px solid rgba(0,0,0,0.06)' }} />
                     </div>
                     <div>
                         <div style={{ display: 'flex', gap: '0.5rem', marginBottom: '0.5rem' }}>
                             <span style={{ background: 'rgba(99, 102, 241, 0.1)', color: '#6366f1', padding: '0.15rem 0.5rem', borderRadius: '0.5rem', fontSize: '0.75rem', fontWeight: 700 }}>{selectedProduct.category}</span>
                             <span style={{ background: 'rgba(0, 0, 0, 0.05)', color: 'var(--text-muted)', padding: '0.15rem 0.5rem', borderRadius: '0.5rem', fontSize: '0.75rem', fontWeight: 700 }}>{selectedProduct.brand}</span>
                         </div>
-                        <h2 style={{ fontSize: '1.8rem', fontWeight: 800, color: 'var(--text-main)', marginBottom: '0.5rem' }}>{selectedProduct.name}</h2>
+                        <h2 style={{ fontSize: '1.8rem', fontWeight: 800, color: 'var(--text-main)', marginBottom: '0.5rem' }}>{selectedProduct.name || selectedProduct.title || ''}</h2>
                         <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)', marginBottom: '1rem' }}>UUID Identifier: {selectedProduct.id}</div>
                         <div style={{ fontSize: '1.6rem', fontWeight: 800, color: 'var(--accent)', marginBottom: '1.5rem' }}>${selectedProduct.price}</div>
 
@@ -413,9 +415,9 @@ function ProductsManager({
                         }}
                     >
                         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-                            <img src={p.image} alt={p.name} style={{ width: '40px', height: '40px', objectFit: 'cover', borderRadius: '0.35rem' }} />
+                            <img src={p.image} alt={p.name || p.title || ''} style={{ width: '40px', height: '40px', objectFit: 'cover', borderRadius: '0.35rem' }} />
                             <div>
-                                <div style={{ fontWeight: 650, fontSize: '0.95rem' }}>{p.name}</div>
+                                <div style={{ fontWeight: 650, fontSize: '0.95rem' }}>{p.name || p.title || ''}</div>
                                 <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>{p.id} | Category: {p.category}</span>
                             </div>
                         </div>

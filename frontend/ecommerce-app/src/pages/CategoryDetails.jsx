@@ -58,7 +58,7 @@ function CategoryDetails() {
                 {categoryProducts.length === 0 ? (
                     <div style={{ textAlign: 'center', margin: '4rem auto' }}>
                         <p style={{ color: 'var(--text-muted)' }}>No products listed in this category yet.</p>
-                        <Link to="/upload" className="hero-btn" style={{ padding: '0.8rem 2rem', marginTop: '1rem', display: 'inline-block' }}>List a Product</Link>
+                        <Link to="/seller-dashboard" className="hero-btn" style={{ padding: '0.8rem 2rem', marginTop: '1rem', display: 'inline-block' }}>List a Product</Link>
                     </div>
                 ) : (
                     <div style={{

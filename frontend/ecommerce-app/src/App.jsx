@@ -162,7 +162,7 @@ function AppContent() {
                                 <li><Link to="/products" className="nav-link" style={{ padding: 0 }}>All Gadgets</Link></li>
                                 <li><Link to="/categories" className="nav-link" style={{ padding: 0 }}>Categories</Link></li>
                                 <li><Link to="/recently-viewed" className="nav-link" style={{ padding: 0 }}>Recently Viewed</Link></li>
-                                <li><Link to="/upload" className="nav-link" style={{ padding: 0 }}>Sell</Link></li>
+                                <li><Link to="/seller-dashboard" className="nav-link" style={{ padding: 0 }}>Sell</Link></li>
                             </ul>
                         </div>
 

@@ -378,6 +378,7 @@ export const ShopContextProvider = ({ children }) => {
 
     const value = {
         products,
+        setProducts,
         cart,
         wishlist,
         searchQuery,

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { ShopContext } from '../context/ShopContext';
 import DashboardOverview from '../components/seller/DashboardOverview';
 import ProductsManager from '../components/seller/ProductsManager';
 import OrdersManager from '../components/seller/OrdersManager';
@@ -6,46 +7,12 @@ import FinancialsManager from '../components/seller/FinancialsManager';
 import StoreSettingsManager from '../components/seller/StoreSettingsManager';
 
 function SellerDashboard() {
+    const { products, setProducts } = useContext(ShopContext);
     const [activeSubTab, setActiveSubTab] = useState('dashboard');
     const [selectedProductId, setSelectedProductId] = useState(null);
     const [selectedOrderId, setSelectedOrderId] = useState(null);
 
     // Initial Shareable States (Mock Data)
-    const [products, setProducts] = useState([
-        {
-            id: 'PRD-8091',
-            name: 'Keychron K2 Mechanical Keyboard',
-            category: 'Keyboards',
-            price: 119.99,
-            stock: 14,
-            brand: 'Keychron',
-            features: ['75% Wireless Layout', 'Gateron G Pro Switches', 'Aluminum Frame', 'Hot-swappable Layout'],
-            description: 'The Keychron K2 is a hot-swappable wireless mechanical keyboard with all the keys and function you need in a compact footprint.',
-            image: 'https://images.unsplash.com/photo-1587829741301-dc798b83add3?auto=format&fit=crop&w=400&q=80'
-        },
-        {
-            id: 'PRD-1294',
-            name: 'DT 990 Pro Headset',
-            category: 'Headphones',
-            price: 159.00,
-            stock: 3,
-            brand: 'Beyerdynamic',
-            features: ['Open-back Design', '250 Ohm Resistance', 'Velour Ear Pads', 'Single-sided Cable'],
-            description: 'Studio reference headphones for mixing and mastering. Outstanding spaciousness and detailed reproduction.',
-            image: 'https://images.unsplash.com/photo-1618384887929-16ec33fab9ef?auto=format&fit=crop&w=400&q=80'
-        },
-        {
-            id: 'PRD-3351',
-            name: 'Premium Felt Desk Mat',
-            category: 'Accessories',
-            price: 35.50,
-            stock: 45,
-            brand: 'CommerceCraft',
-            features: ['Soft Merino Felt', 'Non-slip Cork backing', 'Stitched Edges', 'Minimalist aesthetics'],
-            description: 'Add warmth and texture to your workspace with this beautifully crafted pure felt desk mat.',
-            image: 'https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=400&q=80'
-        }
-    ]);
 
     const [orders, setOrders] = useState([
         { id: 'ORD-9883', customer: 'Alice Smith', date: '7/28/2026', total: 174.99, status: 'Processing', items: ['DT 990 Pro Headset'] },
@@ -176,6 +143,36 @@ function SellerDashboard() {
                             <span style={{ fontSize: '0.75rem', color: 'var(--text-muted)' }}>Merchant Panel</span>
                         </div>
                     </div>
+
+                    {/* Sell Button Action */}
+                    <button
+                        onClick={() => {
+                            setActiveSubTab('add_product');
+                            setSelectedProductId(null);
+                            setSelectedOrderId(null);
+                        }}
+                        className="form-button"
+                        style={{
+                            margin: '0',
+                            padding: '0.64rem 1rem',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            gap: '0.5rem',
+                            background: '#10b981',
+                            fontWeight: 800,
+                            borderRadius: '0.5rem',
+                            fontSize: '0.85rem',
+                            color: 'white',
+                            border: 'none',
+                            cursor: 'pointer',
+                            width: '100%',
+                            boxShadow: '0 4px 12px rgba(16, 185, 129, 0.15)',
+                            transition: 'all 0.2s'
+                        }}
+                    >
+                        ➕ Sell a Product
+                    </button>
 
                     {/* Nav Categories */}
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
