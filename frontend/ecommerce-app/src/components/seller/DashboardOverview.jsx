@@ -6,40 +6,36 @@ function DashboardOverview({ activeSubTab, notifications, setNotifications, orde
     const activeOrderCount = orders.filter(o => o.status === 'Pending' || o.status === 'Processing').length;
 
     const renderDashboard = () => (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', width: '100%' }}>
+
             {/* Stat Cards Grid */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.5rem' }}>
-                <div className="premium-card" style={{ margin: 0, padding: '1.5rem', background: 'rgba(255,255,255,0.7)', backdropFilter: 'blur(10px)' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.5rem', width: '100%' }}>
+
+                <div className="premium-card" style={{ margin: 0, padding: '1.5rem', background: 'rgba(255,255,255,0.7)', backdropFilter: 'blur(10px)', width: '100%', maxWidth: 'none' }}>
                     <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem', fontWeight: 600, textTransform: 'uppercase', marginBottom: '0.5rem' }}>Total Sales</div>
                     <div style={{ fontSize: '1.8rem', fontWeight: 800, color: 'var(--accent)' }}>${totalSales.toLocaleString()}</div>
                     <div style={{ fontSize: '0.75rem', color: '#10b981', marginTop: '0.5rem', fontWeight: 600 }}>&uarr; 12.4% vs last month</div>
                 </div>
 
-                <div className="premium-card" style={{ margin: 0, padding: '1.5rem', background: 'rgba(255,255,255,0.7)', backdropFilter: 'blur(10px)' }}>
+                <div className="premium-card" style={{ margin: 0, padding: '1.5rem', background: 'rgba(255,255,255,0.7)', backdropFilter: 'blur(10px)', width: '100%', maxWidth: 'none' }}>
                     <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem', fontWeight: 600, textTransform: 'uppercase', marginBottom: '0.5rem' }}>Active Orders</div>
                     <div style={{ fontSize: '1.8rem', fontWeight: 800, color: 'var(--text-main)' }}>{activeOrderCount}</div>
                     <div style={{ fontSize: '0.75rem', color: 'var(--text-muted)', marginTop: '0.5rem' }}>Requires shipping fulfillment</div>
                 </div>
 
-                <div className="premium-card" style={{ margin: 0, padding: '1.5rem', background: 'rgba(255,255,255,0.7)', backdropFilter: 'blur(10px)' }}>
+                <div className="premium-card" style={{ margin: 0, padding: '1.5rem', background: 'rgba(255,255,255,0.7)', backdropFilter: 'blur(10px)', width: '100%', maxWidth: 'none' }}>
                     <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem', fontWeight: 600, textTransform: 'uppercase', marginBottom: '0.5rem' }}>Store views</div>
                     <div style={{ fontSize: '1.8rem', fontWeight: 800, color: '#ec4899' }}>9,842</div>
                     <div style={{ fontSize: '0.75rem', color: '#10b981', marginTop: '0.5rem', fontWeight: 600 }}>&uarr; 8.2% new visitors</div>
                 </div>
-
-                <div className="premium-card" style={{ margin: 0, padding: '1.5rem', background: 'rgba(255,255,255,0.7)', backdropFilter: 'blur(10px)' }}>
-                    <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem', fontWeight: 600, textTransform: 'uppercase', marginBottom: '0.5rem' }}>Conversion Rate</div>
-                    <div style={{ fontSize: '1.8rem', fontWeight: 800, color: '#f59e0b' }}>2.45%</div>
-                    <div style={{ fontSize: '0.75rem', color: '#ef4444', marginTop: '0.5rem', fontWeight: 600 }}>&darr; 0.3% checkout drops</div>
-                </div>
             </div>
 
             {/* Simulated mini chart & Quick Orders Panel */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', width: '100%' }}>
 
                 {/* Custom SVG Sales Chart */}
-                <div className="premium-card" style={{ margin: 0, padding: '1.8rem' }}>
-                    <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1.5rem', color: 'var(--text-main)' }}>Weekly Revenue Trend</h3>
+                <div className="premium-card" style={{ margin: 0, padding: '1.8rem', width: '100%', maxWidth: 'none' }}>
+                    <h3 style={{ fontSize: '1.1rem', fontWeight: 750, marginBottom: '1.5rem', color: 'var(--text-main)' }}>Weekly Revenue Trend</h3>
                     <div style={{ position: 'relative', height: '180px', width: '100%' }}>
                         <svg viewBox="0 0 500 180" style={{ width: '100%', height: '100%', overflow: 'visible' }}>
                             <defs>
@@ -74,7 +70,7 @@ function DashboardOverview({ activeSubTab, notifications, setNotifications, orde
                 </div>
 
                 {/* Quick Orders List */}
-                <div className="premium-card" style={{ margin: 0, padding: '1.8rem' }}>
+                <div className="premium-card" style={{ margin: 0, padding: '1.8rem', width: '100%', maxWidth: 'none' }}>
                     <h3 style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '1rem', color: 'var(--text-main)' }}>Recent Orders</h3>
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                         {orders.slice(0, 3).map(order => (
@@ -86,7 +82,7 @@ function DashboardOverview({ activeSubTab, notifications, setNotifications, orde
                                 <div style={{ textAlign: 'right' }}>
                                     <div style={{ fontWeight: 700, fontSize: '0.9rem', color: 'var(--text-main)' }}>${order.total}</div>
                                     <span style={{
-                                        fontSize: '0.7rem',
+                                        fontSize: '0.75rem',
                                         padding: '0.15rem 0.5rem',
                                         borderRadius: '0.5rem',
                                         fontWeight: 700,
@@ -105,11 +101,11 @@ function DashboardOverview({ activeSubTab, notifications, setNotifications, orde
     );
 
     const renderAnalytics = () => (
-        <div className="premium-card" style={{ margin: 0, padding: '2.5rem' }}>
+        <div className="premium-card" style={{ margin: 0, padding: '2.5rem', width: '100%', maxWidth: 'none' }}>
             <h2 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '0.5rem' }}>Detailed Analytics</h2>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '2rem' }}>Audit merchant traffic conversion rates and customer demographics trends.</p>
 
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem', width: '100%' }}>
                 <div style={{ background: 'rgba(0,0,0,0.02)', padding: '1.5rem', borderRadius: '1rem', border: '1px solid rgba(0,0,0,0.04)' }}>
                     <h3 style={{ fontSize: '0.95rem', fontWeight: 700, marginBottom: '1.5rem' }}>Sales Distribution by Category</h3>
                     {/* Visual custom progress bars */}
@@ -181,7 +177,7 @@ function DashboardOverview({ activeSubTab, notifications, setNotifications, orde
     );
 
     const renderNotifications = () => (
-        <div className="premium-card" style={{ margin: 0, padding: '2.5rem' }}>
+        <div className="premium-card" style={{ margin: 0, padding: '2.5rem', width: '100%', maxWidth: 'none' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem' }}>
                 <div>
                     <h2 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '0.5rem' }}>System Alerts</h2>

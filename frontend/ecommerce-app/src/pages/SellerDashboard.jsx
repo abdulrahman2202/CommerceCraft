@@ -162,10 +162,10 @@ function SellerDashboard() {
     ];
 
     return (
-        <main className="page-container" style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', textAlign: 'left', minHeight: '100vh', width: '100%', gap: '2rem', padding: '2rem 1.5rem', maxWidth: '1200px', margin: '0 auto', flexWrap: 'wrap' }}>
+        <main className="page-container" style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', textAlign: 'left', minHeight: '100vh', width: '100%', gap: '2rem', padding: '2rem 1.5rem', maxWidth: '1400px', margin: '0 auto', flexWrap: 'wrap' }}>
 
             {/* Sidebar Navigation */}
-            <aside style={{ flex: '1 1 240px', minWidth: '240px' }}>
+            <aside style={{ flex: '0 0 260px', minWidth: '260px' }}>
                 <div className="premium-card" style={{ margin: 0, padding: '1.5rem 1.25rem', position: 'sticky', top: '2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
 
                     {/* Brand Banner */}
@@ -229,7 +229,7 @@ function SellerDashboard() {
             </aside>
 
             {/* Workspace View switcher */}
-            <section style={{ flex: '3 1 650px', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            <section style={{ flex: '1 1 800px', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                 <DashboardOverview
                     activeSubTab={activeSubTab}
                     notifications={notifications}

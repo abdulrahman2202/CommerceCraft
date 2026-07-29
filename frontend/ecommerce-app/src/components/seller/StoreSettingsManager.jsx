@@ -101,7 +101,7 @@ function StoreSettingsManager({
         const activeThread = messages[activeUser] || [];
 
         return (
-            <div className="premium-card" style={{ margin: 0, padding: '2.5rem' }}>
+            <div className="premium-card" style={{ margin: 0, padding: '2.5rem', width: '100%', maxWidth: 'none' }}>
                 <h2 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '2rem' }}>Buyer Communications Inbox</h2>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '2rem', height: '400px', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '1rem', overflow: 'hidden', background: 'white' }}>
 
@@ -180,7 +180,7 @@ function StoreSettingsManager({
     };
 
     const renderStoreProfile = () => (
-        <div className="premium-card" style={{ margin: 0, padding: '2.5rem' }}>
+        <div className="premium-card" style={{ margin: 0, padding: '2.5rem', width: '100%', maxWidth: 'none' }}>
             <h2 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '0.5rem' }}>Store Brand Profile</h2>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '2rem' }}>Configure client-facing storefront banners, bio profiles, and descriptors.</p>
 
@@ -243,7 +243,7 @@ function StoreSettingsManager({
     );
 
     const renderStoreSettings = () => (
-        <div className="premium-card" style={{ margin: 0, padding: '2.5rem' }}>
+        <div className="premium-card" style={{ margin: 0, padding: '2.5rem', width: '100%', maxWidth: 'none' }}>
             <h2 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '0.5rem' }}>Store Configurations</h2>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '2rem' }}>Audit merchant shipping fees, default VAT registrations, and payout frequency rules.</p>
 
@@ -304,7 +304,7 @@ function StoreSettingsManager({
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
 
                 {/* Tickets form */}
-                <div className="premium-card" style={{ margin: 0, padding: '2.5rem' }}>
+                <div className="premium-card" style={{ margin: 0, padding: '2.5rem', width: '100%', maxWidth: 'none' }}>
                     <h3 style={{ fontSize: '1.1rem', fontWeight: 800, marginBottom: '1.25rem' }}>Open Merchant Support Case</h3>
 
                     {ticketSuccess && (
@@ -361,7 +361,7 @@ function StoreSettingsManager({
                 </div>
 
                 {/* Open support tickets list */}
-                <div className="premium-card" style={{ margin: 0, padding: '2.5rem' }}>
+                <div className="premium-card" style={{ margin: 0, padding: '2.5rem', width: '100%', maxWidth: 'none' }}>
                     <h3 style={{ fontSize: '1.1rem', fontWeight: 800, marginBottom: '1.25rem' }}>Open Support Cases</h3>
 
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
@@ -398,7 +398,7 @@ function StoreSettingsManager({
             </div>
 
             {/* Support FAQs */}
-            <div className="premium-card" style={{ margin: 0, padding: '2.5rem' }}>
+            <div className="premium-card" style={{ margin: 0, padding: '2.5rem', width: '100%', maxWidth: 'none' }}>
                 <h3 style={{ fontSize: '1.1rem', fontWeight: 800, marginBottom: '1.5rem' }}>Frequently Asked Questions</h3>
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem', fontSize: '0.9rem' }}>
                     <div>

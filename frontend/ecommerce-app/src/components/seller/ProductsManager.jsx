@@ -158,7 +158,7 @@ function ProductsManager({
 
     // Sub-views
     const renderProductsList = () => (
-        <div className="premium-card" style={{ margin: 0, padding: '2.5rem' }}>
+        <div className="premium-card" style={{ margin: 0, padding: '2.5rem', width: '100%', maxWidth: 'none' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '2rem', flexWrap: 'wrap', gap: '1rem' }}>
                 <div>
                     <h2 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '0.5rem' }}>Store Products</h2>
@@ -223,7 +223,7 @@ function ProductsManager({
     const renderProductDetails = () => {
         if (!selectedProduct) return <div style={{ padding: '2rem' }}>Product not found.</div>;
         return (
-            <div className="premium-card" style={{ margin: 0, padding: '2.5rem' }}>
+            <div className="premium-card" style={{ margin: 0, padding: '2.5rem', width: '100%', maxWidth: 'none' }}>
                 <button onClick={() => setActiveSubTab('products')} style={{ background: 'transparent', border: 'none', color: 'var(--accent)', cursor: 'pointer', fontWeight: 650, marginBottom: '1.5rem', fontSize: '0.9rem' }}>
                     &larr; Back to Products List
                 </button>
@@ -262,7 +262,7 @@ function ProductsManager({
     const renderProductForm = () => {
         const isEdit = activeSubTab === 'edit_product';
         return (
-            <div className="premium-card" style={{ margin: 0, padding: '2.5rem' }}>
+            <div className="premium-card" style={{ margin: 0, padding: '2.5rem', width: '100%', maxWidth: 'none' }}>
                 <button onClick={() => setActiveSubTab('products')} style={{ background: 'transparent', border: 'none', color: 'var(--accent)', cursor: 'pointer', fontWeight: 650, marginBottom: '1.5rem', fontSize: '0.9rem' }}>
                     &larr; Cancel Editor
                 </button>
@@ -392,7 +392,7 @@ function ProductsManager({
     };
 
     const renderInventory = () => (
-        <div className="premium-card" style={{ margin: 0, padding: '2.5rem' }}>
+        <div className="premium-card" style={{ margin: 0, padding: '2.5rem', width: '100%', maxWidth: 'none' }}>
             <h2 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '0.5rem' }}>Stock Inventory Control</h2>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '2rem' }}>Configure depletion zones, rapid restock, and manual inventory overrides.</p>
 
@@ -460,7 +460,7 @@ function ProductsManager({
     );
 
     const renderCategories = () => (
-        <div className="premium-card" style={{ margin: 0, padding: '2.5rem' }}>
+        <div className="premium-card" style={{ margin: 0, padding: '2.5rem', width: '100%', maxWidth: 'none' }}>
             <h2 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '0.5rem' }}>Seller Product Categories</h2>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '2rem' }}>Establish custom navigation categories to segment hardware lines.</p>
 

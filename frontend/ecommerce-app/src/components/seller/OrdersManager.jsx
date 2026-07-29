@@ -30,7 +30,7 @@ function OrdersManager({
     };
 
     const renderOrdersList = () => (
-        <div className="premium-card" style={{ margin: 0, padding: '2.5rem' }}>
+        <div className="premium-card" style={{ margin: 0, padding: '2.5rem', width: '100%', maxWidth: 'none' }}>
             <h2 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '0.5rem' }}>Active Client Invoices</h2>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '2rem' }}>Track buyer payments, shipments fulfillment, and details status logs.</p>
 
@@ -101,7 +101,7 @@ function OrdersManager({
     const renderOrderDetails = () => {
         if (!selectedOrder) return <div style={{ padding: '2rem' }}>Order details not found.</div>;
         return (
-            <div className="premium-card" style={{ margin: 0, padding: '2.5rem' }}>
+            <div className="premium-card" style={{ margin: 0, padding: '2.5rem', width: '100%', maxWidth: 'none' }}>
                 <button onClick={() => setActiveSubTab('orders')} style={{ background: 'transparent', border: 'none', color: 'var(--accent)', cursor: 'pointer', fontWeight: 650, marginBottom: '1.5rem', fontSize: '0.9rem' }}>
                     &larr; Return to Orders
                 </button>
@@ -176,7 +176,7 @@ function OrdersManager({
     };
 
     const renderCustomers = () => (
-        <div className="premium-card" style={{ margin: 0, padding: '2.5rem' }}>
+        <div className="premium-card" style={{ margin: 0, padding: '2.5rem', width: '100%', maxWidth: 'none' }}>
             <h2 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '0.5rem' }}>Client Directory</h2>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '2rem' }}>Audit buyer profiles lifetime transactions value metrics (LTV).</p>
 
@@ -226,7 +226,7 @@ function OrdersManager({
     );
 
     const renderReviews = () => (
-        <div className="premium-card" style={{ margin: 0, padding: '2.5rem' }}>
+        <div className="premium-card" style={{ margin: 0, padding: '2.5rem', width: '100%', maxWidth: 'none' }}>
             <h2 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '0.5rem' }}>Store Product Reviews</h2>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '2rem' }}>Review average star ratings, customer feedbacks, and write answers.</p>
 

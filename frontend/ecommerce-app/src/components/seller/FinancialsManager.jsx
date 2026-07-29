@@ -94,7 +94,7 @@ function FinancialsManager({
     };
 
     const renderCoupons = () => (
-        <div className="premium-card" style={{ margin: 0, padding: '2.5rem' }}>
+        <div className="premium-card" style={{ margin: 0, padding: '2.5rem', width: '100%', maxWidth: 'none' }}>
             <h2 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '0.5rem' }}>Discount Control Panel</h2>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '2rem' }}>Generate markdown, percent ratios, and usage limits campaigns.</p>
 
@@ -192,13 +192,13 @@ function FinancialsManager({
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
             {/* Balance Summary Box */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '2rem' }}>
-                <div className="premium-card" style={{ margin: 0, padding: '2.5rem' }}>
+                <div className="premium-card" style={{ margin: 0, padding: '2.5rem', width: '100%', maxWidth: 'none' }}>
                     <div style={{ color: 'var(--text-muted)', fontSize: '0.85rem', fontWeight: 600, textTransform: 'uppercase', marginBottom: '0.5rem' }}>Available Account Reserves</div>
                     <div style={{ fontSize: '2.2rem', fontWeight: 800, color: 'var(--accent)' }}>${payoutBalance.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</div>
                     <p style={{ color: 'var(--text-muted)', fontSize: '0.8rem', marginTop: '0.5rem', marginBottom: 0 }}>This is processed sales revenue currently cleared for payouts.</p>
                 </div>
 
-                <div className="premium-card" style={{ margin: 0, padding: '2.5rem' }}>
+                <div className="premium-card" style={{ margin: 0, padding: '2.5rem', width: '100%', maxWidth: 'none' }}>
                     <h3 style={{ fontSize: '1.05rem', fontWeight: 750, marginBottom: '1.25rem' }}>Trigger Funds Transfer</h3>
                     <form onSubmit={handlePayoutRequest} style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                         <div style={{ display: 'flex', gap: '0.5rem' }}>
@@ -236,7 +236,7 @@ function FinancialsManager({
             </div>
 
             {/* Payout History */}
-            <div className="premium-card" style={{ margin: 0, padding: '2.5rem' }}>
+            <div className="premium-card" style={{ margin: 0, padding: '2.5rem', width: '100%', maxWidth: 'none' }}>
                 <h3 style={{ fontSize: '1.1rem', fontWeight: 800, marginBottom: '1.5rem' }}>Payout Activity Log</h3>
                 <div style={{ overflowX: 'auto' }}>
                     <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', minWidth: '400px' }}>
@@ -274,7 +274,7 @@ function FinancialsManager({
     );
 
     const renderTransactions = () => (
-        <div className="premium-card" style={{ margin: 0, padding: '2.5rem' }}>
+        <div className="premium-card" style={{ margin: 0, padding: '2.5rem', width: '100%', maxWidth: 'none' }}>
             <h2 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '0.5rem' }}>Payment Transactions Ledger</h2>
             <p style={{ color: 'var(--text-muted)', fontSize: '0.9rem', marginBottom: '2rem' }}>Comprehensive record of cash receipts, refunds, and transfer logs.</p>
 
