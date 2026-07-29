@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { ShopContext } from '../context/ShopContext';
 import DashboardOverview from '../components/seller/DashboardOverview';
 import ProductsManager from '../components/seller/ProductsManager';
@@ -11,6 +11,11 @@ function SellerDashboard() {
     const [activeSubTab, setActiveSubTab] = useState('dashboard');
     const [selectedProductId, setSelectedProductId] = useState(null);
     const [selectedOrderId, setSelectedOrderId] = useState(null);
+
+    // Scroll to top of section/viewport when active tab shifts
+    useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, [activeSubTab]);
 
     // Initial Shareable States (Mock Data)
 

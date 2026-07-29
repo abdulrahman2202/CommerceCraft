@@ -103,7 +103,7 @@ function StoreSettingsManager({
         return (
             <div className="premium-card" style={{ margin: 0, padding: '2.5rem', width: '100%', maxWidth: 'none' }}>
                 <h2 style={{ fontSize: '1.4rem', fontWeight: 800, marginBottom: '2rem' }}>Buyer Communications Inbox</h2>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '2rem', height: '400px', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '1rem', overflow: 'hidden', background: 'white' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 2fr', gap: '2rem', height: '500px', border: '1px solid rgba(0,0,0,0.06)', borderRadius: '1rem', overflow: 'hidden', background: 'white' }}>
 
                     {/* Inbox threads sidebar */}
                     <div style={{ borderRight: '1px solid rgba(0,0,0,0.06)', overflowY: 'auto' }}>
@@ -127,12 +127,12 @@ function StoreSettingsManager({
                     </div>
 
                     {/* Thread active chat */}
-                    <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+                    <div style={{ display: 'flex', flexDirection: 'column', height: '100%', minHeight: '0' }}>
                         <div style={{ padding: '0.8rem 1.2rem', borderBottom: '1px solid rgba(0,0,0,0.06)', fontWeight: 700, background: 'rgba(0,0,0,0.01)', fontSize: '0.9rem' }}>
                             Thread / {activeUser}
                         </div>
 
-                        <div style={{ flex: 1, padding: '1.2rem', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '0.8rem', background: '#fafafa' }}>
+                        <div style={{ flex: '1 1 0%', minHeight: '0', padding: '1.2rem', overflowY: 'auto', display: 'flex', flexDirection: 'column', gap: '0.8rem', background: '#fafafa' }}>
                             {activeThread.map((msgItem, idx) => (
                                 <div
                                     key={idx}
@@ -156,7 +156,7 @@ function StoreSettingsManager({
                             ))}
                         </div>
 
-                        <div style={{ padding: '0.8rem 1rem', display: 'flex', gap: '0.5rem', borderTop: '1px solid rgba(0,0,0,0.06)' }}>
+                        <div style={{ padding: '0.8rem 1rem', display: 'flex', gap: '0.5rem', borderTop: '1px solid rgba(0,0,0,0.06)', background: 'white' }}>
                             <input
                                 type="text"
                                 placeholder={`Write answer description for ${activeUser}...`}
