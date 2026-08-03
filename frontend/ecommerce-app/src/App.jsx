@@ -224,15 +224,15 @@ function AppContent() {
             </Routes>
 
             <footer className="footer" style={{ borderTop: '1px solid var(--glass-border)', background: 'var(--glass-bg)', padding: '3.5rem 1.5rem', marginTop: '6rem' }}>
-                <div style={{ maxWidth: '1100px', margin: '0 auto', display: 'flex', flexWrap: 'wrap', gap: '3rem', justifyContent: 'space-between' }}>
-                    <div style={{ flex: '1 1 250px' }}>
+                <div className="footer-content">
+                    <div className="footer-brand">
                         <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--text-main)', marginBottom: '1rem' }}>CommerceCraft</h3>
                         <p style={{ color: 'var(--text-muted)', fontSize: '0.85rem', lineHeight: '1.6', margin: 0 }}>
                             State-of-the-art e-commerce gateway offering premium, verified hardware, custom mechanical input layouts, and acoustics solutions.
                         </p>
                     </div>
 
-                    <div style={{ display: 'flex', gap: '4rem', flexWrap: 'wrap' }}>
+                    <div className="footer-links-grid">
                         <div>
                             <h4 style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--accent-light)', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Shop & Browse</h4>
                             <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.85rem' }}>
@@ -266,7 +266,7 @@ function AppContent() {
                     </div>
                 </div>
 
-                <div style={{ maxWidth: '1100px', margin: '2.5rem auto 0 auto', paddingTop: '1.5rem', borderTop: '1px solid rgba(0,0,0,0.06)', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '1rem', fontSize: '0.8rem', color: 'var(--text-muted)' }}>
+                <div className="footer-bottom">
                     <span>&copy; {new Date().getFullYear()} CommerceCraft. Designed with premium aesthetics.</span>
                     <span>Safe & Secure Checkouts guaranteed</span>
                 </div>
