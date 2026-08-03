@@ -107,8 +107,6 @@ function ShoppingCart() {
                     </div>
                 ) : (
                     <div style={{
-                        display: 'grid',
-                        gridTemplateColumns: '1fr',
                         gap: '2.5rem'
                     }} className="upload-grid">
 

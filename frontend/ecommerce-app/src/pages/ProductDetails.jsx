@@ -80,9 +80,6 @@ function ProductDetails() {
 
                 {/* Details layout splits in 2 columns (responsive) */}
                 <div style={{
-                    display: 'grid',
-                    gridTemplateColumns: '1fr',
-                    gap: '3rem',
                     marginBottom: '4rem'
                 }} className="upload-grid">
 
@@ -222,7 +219,7 @@ function ProductDetails() {
                 <hr style={{ border: '0', borderTop: '1px solid rgba(0,0,0,0.08)', margin: '3rem 0' }} />
 
                 {/* Additional Spec Tabs */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '3rem', margin: '3rem 0' }} className="upload-grid">
+                <div style={{ margin: '3rem 0' }} className="upload-grid">
                     {/* System Specifications */}
                     <div className="premium-card" style={{ margin: 0, width: '100%', maxWidth: 'none', padding: '2rem' }}>
                         <h3 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text-main)', marginBottom: '1.2rem' }}>Device Specifications</h3>
@@ -254,7 +251,7 @@ function ProductDetails() {
                 <hr style={{ border: '0', borderTop: '1px solid rgba(0,0,0,0.08)', margin: '3rem 0' }} />
 
                 {/* Interactive Reviews Section */}
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '3rem', margin: '3rem 0' }} className="upload-grid">
+                <div style={{ margin: '3rem 0' }} className="upload-grid">
 
                     {/* Reviews List */}
                     <div className="premium-card" style={{ margin: 0, width: '100%', maxWidth: 'none', padding: '2rem' }}>

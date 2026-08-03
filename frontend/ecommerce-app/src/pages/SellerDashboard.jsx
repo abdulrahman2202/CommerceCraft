@@ -11,10 +11,12 @@ function SellerDashboard() {
     const [activeSubTab, setActiveSubTab] = useState('dashboard');
     const [selectedProductId, setSelectedProductId] = useState(null);
     const [selectedOrderId, setSelectedOrderId] = useState(null);
+    const [menuExpanded, setMenuExpanded] = useState(false);
 
     // Scroll to top of section/viewport when active tab shifts
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
+        setMenuExpanded(false);
     }, [activeSubTab]);
 
     // Initial Shareable States (Mock Data)
@@ -134,10 +136,10 @@ function SellerDashboard() {
     ];
 
     return (
-        <main className="page-container" style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', textAlign: 'left', minHeight: '100vh', width: '100%', gap: '2rem', padding: '2rem 1.5rem', maxWidth: '1400px', margin: '0 auto', flexWrap: 'wrap' }}>
+        <main className="page-container seller-layout">
 
             {/* Sidebar Navigation */}
-            <aside style={{ flex: '0 0 260px', minWidth: '260px' }}>
+            <aside className="seller-sidebar">
                 <div className="premium-card" style={{ margin: 0, padding: '1.5rem 1.25rem', position: 'sticky', top: '2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
 
                     {/* Brand Banner */}
@@ -179,8 +181,16 @@ function SellerDashboard() {
                         ➕ Sell a Product
                     </button>
 
+                    {/* Collapsible Mobile Toggle button */}
+                    <button
+                        onClick={() => setMenuExpanded(!menuExpanded)}
+                        className="seller-nav-toggle"
+                    >
+                        {menuExpanded ? '✕ Close Sidebar Menu' : '☰ Open Dashboard Menu'}
+                    </button>
+
                     {/* Nav Categories */}
-                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+                    <div className={`seller-nav-groups ${menuExpanded ? 'expanded' : 'collapsed'}`}>
                         {menuGroups.map(group => (
                             <div key={group.title}>
                                 <div style={{ fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '1px', marginBottom: '0.5rem' }}>
@@ -231,7 +241,7 @@ function SellerDashboard() {
             </aside>
 
             {/* Workspace View switcher */}
-            <section style={{ flex: '1 1 800px', display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            <section className="seller-workspace" style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
                 <DashboardOverview
                     activeSubTab={activeSubTab}
                     notifications={notifications}

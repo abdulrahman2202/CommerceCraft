@@ -37,11 +37,13 @@ import './index.css';
 function AppContent() {
     const { cartCount, wishlistCount, setSearchQuery } = useContext(ShopContext);
     const [localSearch, setLocalSearch] = useState('');
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const navigate = useNavigate();
 
     const handleSearchSubmit = (e) => {
         e.preventDefault();
         setSearchQuery(localSearch.trim());
+        setMobileMenuOpen(false);
         navigate('/search');
     };
 
@@ -50,10 +52,10 @@ function AppContent() {
             <header className="header">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '2rem', flex: '1' }}>
                     <div className="brand" style={{ flexShrink: 0 }}>
-                        <Link to="/" style={{ color: 'inherit', textDecoration: 'none' }}>CommerceCraft</Link>
+                        <Link to="/" style={{ color: 'inherit', textDecoration: 'none' }} onClick={() => setMobileMenuOpen(false)}>CommerceCraft</Link>
                     </div>
                     {/* Search Bar */}
-                    <form onSubmit={handleSearchSubmit} style={{ position: 'relative', width: '100%', maxWidth: '350px' }}>
+                    <form onSubmit={handleSearchSubmit} className="desktop-only" style={{ position: 'relative', width: '100%', maxWidth: '350px' }}>
                         <input
                             type="text"
                             placeholder="Search premium gadgets..."
@@ -75,14 +77,14 @@ function AppContent() {
                     </form>
                 </div>
 
-                <nav className="nav-links" style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
+                <nav className="nav-links desktop-nav" style={{ display: 'flex', alignItems: 'center', gap: '2rem' }}>
                     <Link to="/products" className="nav-link" style={{ marginLeft: '1rem' }}>Shop All</Link>
                     <Link to="/categories" className="nav-link">Categories</Link>
                     <Link to="/orders" className="nav-link">My Orders</Link>
                     <Link to="/about" className="nav-link">About</Link>
                 </nav>
 
-                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginLeft: '2rem' }}>
+                <div className="desktop-actions" style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginLeft: '2rem' }}>
                     <Link to="/wishlist" className="cart-btn" style={{ textDecoration: 'none' }}>
                         <span>❤️ Wishlist</span>
                         {wishlistCount > 0 && (
@@ -109,7 +111,82 @@ function AppContent() {
                         <span>👤 Profile</span>
                     </Link>
                 </div>
+
+                {/* Hamburger Toggler for Mobile */}
+                <button
+                    className={`hamburger-toggle ${mobileMenuOpen ? 'active' : ''}`}
+                    onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                    aria-label="Toggle Menu"
+                >
+                    <span className="hamburger-line line-1"></span>
+                    <span className="hamburger-line line-2"></span>
+                    <span className="hamburger-line line-3"></span>
+                </button>
             </header>
+
+            {/* Mobile Navigation Drawer */}
+            {mobileMenuOpen && (
+                <div className="mobile-drawer-overlay" onClick={() => setMobileMenuOpen(false)}>
+                    <div className="mobile-drawer" onClick={(e) => e.stopPropagation()}>
+                        {/* Search Bar inside drawer */}
+                        <form onSubmit={handleSearchSubmit} style={{ position: 'relative', width: '100%' }}>
+                            <input
+                                type="text"
+                                placeholder="Search products..."
+                                value={localSearch}
+                                onChange={(e) => setLocalSearch(e.target.value)}
+                                style={{
+                                    width: '100%',
+                                    padding: '0.65rem 1rem 0.65rem 2.2rem',
+                                    borderRadius: '1.5rem',
+                                    border: '1px solid rgba(0,0,0,0.1)',
+                                    backgroundColor: 'white',
+                                    outline: 'none',
+                                    fontSize: '0.9rem',
+                                    boxSizing: 'border-box'
+                                }}
+                            />
+                            <span style={{ position: 'absolute', left: '0.8rem', top: '50%', transform: 'translateY(-50%)', opacity: 0.5 }}>🔍</span>
+                        </form>
+
+                        <div className="mobile-drawer-links">
+                            <Link to="/products" className="mobile-drawer-link" onClick={() => setMobileMenuOpen(false)}>Shop All</Link>
+                            <Link to="/categories" className="mobile-drawer-link" onClick={() => setMobileMenuOpen(false)}>Categories</Link>
+                            <Link to="/orders" className="mobile-drawer-link" onClick={() => setMobileMenuOpen(false)}>My Orders</Link>
+                            <Link to="/about" className="mobile-drawer-link" onClick={() => setMobileMenuOpen(false)}>About Us</Link>
+                            <Link to="/seller-dashboard" className="mobile-drawer-link" onClick={() => setMobileMenuOpen(false)}>Sell on Craft</Link>
+                        </div>
+
+                        <div className="mobile-drawer-actions">
+                            <Link to="/wishlist" className="cart-btn" style={{ textDecoration: 'none', justifyContent: 'center' }} onClick={() => setMobileMenuOpen(false)}>
+                                <span>❤️ Wishlist</span>
+                                {wishlistCount > 0 && (
+                                    <span style={{ background: 'var(--accent)', color: 'white', borderRadius: '50%', padding: '0 6px', fontSize: '0.75rem', fontWeight: 'bold' }}>
+                                        {wishlistCount}
+                                    </span>
+                                )}
+                            </Link>
+
+                            <Link to="/cart" className="cart-btn" style={{ textDecoration: 'none', justifyContent: 'center' }} onClick={() => setMobileMenuOpen(false)}>
+                                <span>🛒 Cart</span>
+                                {cartCount > 0 && (
+                                    <span style={{ background: 'var(--text-main)', color: 'white', borderRadius: '50%', padding: '0 6px', fontSize: '0.75rem', fontWeight: 'bold' }}>
+                                        {cartCount}
+                                    </span>
+                                )}
+                            </Link>
+
+                            <Link to="/login" className="cart-btn" style={{ textDecoration: 'none', justifyContent: 'center' }} onClick={() => setMobileMenuOpen(false)}>
+                                <span>🔑 Sign In</span>
+                            </Link>
+
+                            <Link to="/profile" className="cart-btn" style={{ textDecoration: 'none', justifyContent: 'center' }} onClick={() => setMobileMenuOpen(false)}>
+                                <span>👤 Profile</span>
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             <Routes>
                 <Route path="/" element={<Home />} />
