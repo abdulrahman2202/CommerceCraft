@@ -31,6 +31,7 @@ import ChangePassword from './pages/ChangePassword';
 import SellerDashboard from './pages/SellerDashboard';
 import SellerLogin from './pages/SellerLogin';
 import AdminLogin from './pages/AdminLogin';
+import AdminDashboard from './pages/AdminDashboard';
 import './index.css';
 
 
@@ -221,6 +222,7 @@ function AppContent() {
                 <Route path="/seller-login" element={<SellerLogin />} />
                 <Route path="/admin-login" element={<AdminLogin />} />
                 <Route path="/seller-dashboard" element={<SellerDashboard />} />
+                <Route path="/admin-dashboard" element={<AdminDashboard />} />
             </Routes>
 
             <footer className="footer" style={{ borderTop: '1px solid var(--glass-border)', background: 'var(--glass-bg)', padding: '3.5rem 1.5rem', marginTop: '6rem' }}>
@@ -261,6 +263,7 @@ function AppContent() {
                                 <li><Link to="/register" className="nav-link" style={{ padding: 0 }}>Register</Link></li>
                                 <li><Link to="/change-password" className="nav-link" style={{ padding: 0 }}>Change Password</Link></li>
                                 <li><Link to="/two-factor" className="nav-link" style={{ padding: 0 }}>Two-Factor Auth</Link></li>
+                                <li><Link to="/admin-login" className="nav-link" style={{ padding: 0 }}>Admin Console</Link></li>
                             </ul>
                         </div>
                     </div>

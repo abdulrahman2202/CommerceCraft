@@ -30,7 +30,7 @@ function AdminLogin() {
 
             // Redirect or load dashboard
             setTimeout(() => {
-                navigate('/profile?tab=admin_dashboard');
+                navigate('/admin-dashboard');
             }, 1500);
         }, 1200);
     };
