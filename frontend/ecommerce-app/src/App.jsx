@@ -32,6 +32,14 @@ import SellerDashboard from './pages/SellerDashboard';
 import SellerLogin from './pages/SellerLogin';
 import AdminLogin from './pages/AdminLogin';
 import AdminDashboard from './pages/AdminDashboard';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsConditions from './pages/TermsConditions';
+import ShippingPolicy from './pages/ShippingPolicy';
+import RefundPolicy from './pages/RefundPolicy';
+import FAQ from './pages/FAQ';
+import Blog from './pages/Blog';
+import BlogDetails from './pages/BlogDetails';
+import NotFound from './pages/NotFound';
 import './index.css';
 
 
@@ -223,6 +231,16 @@ function AppContent() {
                 <Route path="/admin-login" element={<AdminLogin />} />
                 <Route path="/seller-dashboard" element={<SellerDashboard />} />
                 <Route path="/admin-dashboard" element={<AdminDashboard />} />
+
+                {/* Static Pages & 404 Routes */}
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/terms-conditions" element={<TermsConditions />} />
+                <Route path="/shipping-policy" element={<ShippingPolicy />} />
+                <Route path="/refund-policy" element={<RefundPolicy />} />
+                <Route path="/faq" element={<FAQ />} />
+                <Route path="/blog" element={<Blog />} />
+                <Route path="/blog/:id" element={<BlogDetails />} />
+                <Route path="*" element={<NotFound />} />
             </Routes>
 
             <footer className="footer" style={{ borderTop: '1px solid var(--glass-border)', background: 'var(--glass-bg)', padding: '3.5rem 1.5rem', marginTop: '6rem' }}>
@@ -251,6 +269,18 @@ function AppContent() {
                                 <li><Link to="/help" className="nav-link" style={{ padding: 0 }}>Help Center FAQs</Link></li>
                                 <li><Link to="/contact" className="nav-link" style={{ padding: 0 }}>Contact Support</Link></li>
                                 <li><Link to="/about" className="nav-link" style={{ padding: 0 }}>About Us</Link></li>
+                            </ul>
+                        </div>
+
+                        <div>
+                            <h4 style={{ fontSize: '0.9rem', fontWeight: 700, color: 'var(--accent-light)', marginBottom: '1rem', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Legal & Journal</h4>
+                            <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '0.6rem', fontSize: '0.85rem' }}>
+                                <li><Link to="/blog" className="nav-link" style={{ padding: 0 }}>Acoustics Journal</Link></li>
+                                <li><Link to="/faq" className="nav-link" style={{ padding: 0 }}>Platform FAQs</Link></li>
+                                <li><Link to="/privacy-policy" className="nav-link" style={{ padding: 0 }}>Privacy Policy</Link></li>
+                                <li><Link to="/terms-conditions" className="nav-link" style={{ padding: 0 }}>Terms & Conditions</Link></li>
+                                <li><Link to="/shipping-policy" className="nav-link" style={{ padding: 0 }}>Shipping Guidelines</Link></li>
+                                <li><Link to="/refund-policy" className="nav-link" style={{ padding: 0 }}>Refund Policy</Link></li>
                             </ul>
                         </div>
 
