@@ -1,4 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext';
 import DashboardOverview from '../components/seller/DashboardOverview';
 import ProductsManager from '../components/seller/ProductsManager';
@@ -8,6 +9,7 @@ import StoreSettingsManager from '../components/seller/StoreSettingsManager';
 
 function SellerDashboard() {
     const { products, setProducts } = useContext(ShopContext);
+    const navigate = useNavigate();
     const [activeSubTab, setActiveSubTab] = useState('dashboard');
     const [selectedProductId, setSelectedProductId] = useState(null);
     const [selectedOrderId, setSelectedOrderId] = useState(null);
@@ -236,6 +238,38 @@ function SellerDashboard() {
                             </div>
                         ))}
                     </div>
+
+                    {/* Logout Button */}
+                    <button
+                        onClick={() => navigate('/')}
+                        style={{
+                            margin: '1.5rem 0 0 0',
+                            padding: '0.65rem 1rem',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            gap: '0.5rem',
+                            background: 'transparent',
+                            color: '#ef4444',
+                            border: '1px solid rgba(239, 68, 68, 0.4)',
+                            fontWeight: 700,
+                            borderRadius: '0.5rem',
+                            fontSize: '0.85rem',
+                            cursor: 'pointer',
+                            width: '100%',
+                            transition: 'all 0.2s',
+                        }}
+                        onMouseEnter={(e) => {
+                            e.currentTarget.style.background = '#ef4444';
+                            e.currentTarget.style.color = 'white';
+                        }}
+                        onMouseLeave={(e) => {
+                            e.currentTarget.style.background = 'transparent';
+                            e.currentTarget.style.color = '#ef4444';
+                        }}
+                    >
+                        🚪 Sign Out of Panel
+                    </button>
 
                 </div>
             </aside>
