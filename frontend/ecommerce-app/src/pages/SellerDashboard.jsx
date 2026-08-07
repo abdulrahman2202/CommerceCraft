@@ -142,7 +142,7 @@ function SellerDashboard() {
 
             {/* Sidebar Navigation */}
             <aside className="seller-sidebar">
-                <div className="premium-card" style={{ margin: 0, padding: '1.5rem 1.25rem', position: 'sticky', top: '2rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                <div className="premium-card" style={{ margin: 0, padding: '1.5rem 1.25rem', position: 'sticky', top: '8.5rem', display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
 
                     {/* Brand Banner */}
                     <div style={{ display: 'flex', gap: '0.8rem', alignItems: 'center', borderBottom: '1px solid rgba(0,0,0,0.06)', paddingBottom: '1rem' }}>
@@ -192,7 +192,7 @@ function SellerDashboard() {
                     </button>
 
                     {/* Nav Categories */}
-                    <div className={`seller-nav-groups ${menuExpanded ? 'expanded' : 'collapsed'}`}>
+                    <div className={`seller-nav-groups ${menuExpanded ? 'expanded' : 'collapsed'}`} style={{ maxHeight: '60vh', overflowY: 'auto', paddingRight: '5px' }}>
                         {menuGroups.map(group => (
                             <div key={group.title}>
                                 <div style={{ fontSize: '0.7rem', fontWeight: 800, textTransform: 'uppercase', color: 'var(--text-muted)', letterSpacing: '1px', marginBottom: '0.5rem' }}>
