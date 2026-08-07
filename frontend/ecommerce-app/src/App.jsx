@@ -1,5 +1,5 @@
-import React, { useContext, useState } from 'react';
-import { Routes, Route, Link, useNavigate } from 'react-router-dom';
+import React, { useContext, useState, useEffect } from 'react';
+import { Routes, Route, Link, useNavigate, useLocation } from 'react-router-dom';
 import { ShopContextProvider, ShopContext } from './context/ShopContext';
 import Home from './pages/Home';
 import ProductsListing from './pages/ProductsListing';
@@ -40,6 +40,7 @@ import FAQ from './pages/FAQ';
 import Blog from './pages/Blog';
 import BlogDetails from './pages/BlogDetails';
 import NotFound from './pages/NotFound';
+import ScrollToTop from './components/ScrollToTop';
 import './index.css';
 
 
@@ -58,6 +59,7 @@ function AppContent() {
 
     return (
         <>
+            <ScrollToTop />
             <header className="header">
                 <div style={{ display: 'flex', alignItems: 'center', gap: '2rem', flex: '1' }}>
                     <div className="brand" style={{ flexShrink: 0 }}>
