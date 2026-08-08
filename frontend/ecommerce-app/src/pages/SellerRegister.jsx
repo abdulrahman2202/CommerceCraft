@@ -1,11 +1,15 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
-function SellerLogin() {
+function SellerRegister() {
     const navigate = useNavigate();
-    const [merchantId, setMerchantId] = useState('');
+
+    // Registration Form Fields
+    const [storeName, setStoreName] = useState('');
     const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
+    const [merchantIdChoice, setMerchantIdChoice] = useState('');
 
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
@@ -16,30 +20,33 @@ function SellerLogin() {
         setError('');
         setSuccess('');
 
-        if (!merchantId.trim() || !email.trim() || !password.trim()) {
-            setError('Please complete all merchant login credentials.');
+        if (!storeName.trim() || !email.trim() || !phone.trim() || !password.trim()) {
+            setError('Please complete all merchant registry details.');
             return;
         }
 
         setLoading(true);
 
-        // Simulate seller login
+        // Simulate Seller Account Creation
         setTimeout(() => {
             setLoading(false);
-            setSuccess('🎉 Merchant credentials verified! Opening corporate inventory cockpit...');
 
-            // Redirect user or simulate dashboard loading after 1.5 seconds
+            // Auto generate Merchant ID if choice is blank
+            const finalId = merchantIdChoice.trim() || `MC-${Math.floor(1000 + Math.random() * 9000)}-20X`;
+            setSuccess(`🎉 Application registered! Your generated Merchant ID is ${finalId}. Redirecting to Login...`);
+
+            // Redirect back to seller login page after 2 seconds
             setTimeout(() => {
-                navigate('/seller-dashboard');
-            }, 1500);
-        }, 1200);
+                navigate('/seller-login');
+            }, 2000);
+        }, 1500);
     };
 
     return (
         <main className="page-container" style={{ minHeight: '100vh', width: '100%' }}>
-            <div style={{ width: '100%', maxWidth: '480px', margin: '0 auto', padding: '0 1.5rem' }}>
+            <div style={{ width: '100%', maxWidth: '500px', margin: '0 auto', padding: '0 1.5rem' }}>
 
-                {/* Header Title */}
+                {/* Header Section */}
                 <div style={{ marginBottom: '2.5rem', textAlign: 'center' }}>
                     <div style={{
                         display: 'inline-block',
@@ -56,13 +63,13 @@ function SellerLogin() {
                     }}>
                         Merchant Hub
                     </div>
-                    <h1 className="gradient-title">Seller Login</h1>
+                    <h1 className="gradient-title">Register as Seller</h1>
                     <p style={{ color: 'var(--text-muted)', fontSize: '1rem' }}>
-                        Manage corporate device inventories & acoustic hardware catalog drops.
+                        Enroll in the CommerceCraft merchant circle to list hardware solutions.
                     </p>
                 </div>
 
-                {/* Form Card */}
+                {/* Registration Card */}
                 <div className="premium-card" style={{ margin: 0, width: '100%', maxWidth: 'none', padding: '2.5rem' }}>
 
                     {error && (
@@ -80,26 +87,51 @@ function SellerLogin() {
                     <form onSubmit={handleSubmit}>
 
                         <div className="form-group">
-                            <label className="form-label">Merchant Identifier (ID)</label>
+                            <label className="form-label">Brand / Store Name</label>
                             <input
                                 type="text"
                                 required
-                                placeholder="E.g. MC-8921-20X"
-                                value={merchantId}
-                                onChange={(e) => setMerchantId(e.target.value)}
+                                placeholder="E.g. MechKeys Studios"
+                                value={storeName}
+                                onChange={(e) => setStoreName(e.target.value)}
                                 className="form-input"
                                 disabled={loading || !!success}
                             />
                         </div>
 
                         <div className="form-group">
-                            <label className="form-label">Registered E-mail</label>
+                            <label className="form-label">Corporate Email Address</label>
                             <input
                                 type="email"
                                 required
-                                placeholder="partners@corporate.com"
+                                placeholder="info@yourbrand.com"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
+                                className="form-input"
+                                disabled={loading || !!success}
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label className="form-label">Contact Telephone</label>
+                            <input
+                                type="text"
+                                required
+                                placeholder="E.g. +1 (555) 234-8920"
+                                value={phone}
+                                onChange={(e) => setPhone(e.target.value)}
+                                className="form-input"
+                                disabled={loading || !!success}
+                            />
+                        </div>
+
+                        <div className="form-group">
+                            <label className="form-label">Preferred Merchant ID (Optional)</label>
+                            <input
+                                type="text"
+                                placeholder="E.g. MK-7712 (Leaves blank for auto-generation)"
+                                value={merchantIdChoice}
+                                onChange={(e) => setMerchantIdChoice(e.target.value)}
                                 className="form-input"
                                 disabled={loading || !!success}
                             />
@@ -129,22 +161,22 @@ function SellerLogin() {
                             onMouseEnter={(e) => e.target.style.background = '#059669'}
                             onMouseLeave={(e) => e.target.style.background = '#10b981'}
                         >
-                            {loading ? 'Authenticating Merchant...' : 'Access Merchant Portal'}
+                            {loading ? 'Creating Merchant Account...' : 'Submit Application Portal'}
                         </button>
                     </form>
 
-                    {/* Redirection options */}
+                    {/* Navigation pathways redirects */}
                     <div style={{ marginTop: '2rem', textAlign: 'center', fontSize: '0.9rem', color: 'var(--text-muted)', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                         <div>
-                            Seeking standard buyer services?{' '}
-                            <Link to="/login" style={{ color: 'var(--accent)', fontWeight: 700 }}>
-                                Sign in as Buyer
+                            Already registered as Merchant?{' '}
+                            <Link to="/seller-login" style={{ color: 'var(--accent)', fontWeight: 700 }}>
+                                Sign In
                             </Link>
                         </div>
                         <div>
-                            Want to join the merchant network?{' '}
-                            <Link to="/seller-register" style={{ color: 'var(--accent)', fontWeight: 700 }}>
-                                Apply now
+                            Seeking standard buyer account?{' '}
+                            <Link to="/register" style={{ color: 'var(--accent)', fontWeight: 700 }}>
+                                Standard Register
                             </Link>
                         </div>
                     </div>
@@ -155,4 +187,4 @@ function SellerLogin() {
     );
 }
 
-export default SellerLogin;
+export default SellerRegister;

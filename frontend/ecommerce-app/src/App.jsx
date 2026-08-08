@@ -44,6 +44,7 @@ import ServerError from './pages/ServerError';
 import Maintenance from './pages/Maintenance';
 import AccessDenied from './pages/AccessDenied';
 import Unauthorized from './pages/Unauthorized';
+import SellerRegister from './pages/SellerRegister';
 import ScrollToTop from './components/ScrollToTop';
 import './index.css';
 
@@ -237,6 +238,7 @@ function AppContent() {
                 <Route path="/admin-login" element={<AdminLogin />} />
                 <Route path="/seller-dashboard" element={<SellerDashboard />} />
                 <Route path="/admin-dashboard" element={<AdminDashboard />} />
+                <Route path="/seller-register" element={<SellerRegister />} />
 
                 {/* Static Pages & 404 Routes */}
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
