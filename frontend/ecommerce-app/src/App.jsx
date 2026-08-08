@@ -40,6 +40,10 @@ import FAQ from './pages/FAQ';
 import Blog from './pages/Blog';
 import BlogDetails from './pages/BlogDetails';
 import NotFound from './pages/NotFound';
+import ServerError from './pages/ServerError';
+import Maintenance from './pages/Maintenance';
+import AccessDenied from './pages/AccessDenied';
+import Unauthorized from './pages/Unauthorized';
 import ScrollToTop from './components/ScrollToTop';
 import './index.css';
 
@@ -242,6 +246,10 @@ function AppContent() {
                 <Route path="/faq" element={<FAQ />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/blog/:id" element={<BlogDetails />} />
+                <Route path="/500" element={<ServerError />} />
+                <Route path="/maintenance" element={<Maintenance />} />
+                <Route path="/access-denied" element={<AccessDenied />} />
+                <Route path="/unauthorized" element={<Unauthorized />} />
                 <Route path="*" element={<NotFound />} />
             </Routes>
 
