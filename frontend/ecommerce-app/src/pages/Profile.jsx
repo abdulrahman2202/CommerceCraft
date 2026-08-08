@@ -1,4 +1,5 @@
 import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { ShopContext } from '../context/ShopContext';
 
 function Profile() {
@@ -14,6 +15,8 @@ function Profile() {
         removePayment,
         updateNotifications
     } = useContext(ShopContext);
+
+    const navigate = useNavigate();
 
     const [activeTab, setActiveTab] = useState('profile'); // profile, edit, addresses, payments, notifications
 
@@ -45,6 +48,10 @@ function Profile() {
     const [paymentSuccess, setPaymentSuccess] = useState('');
 
     // Handlers
+    const handleLogout = () => {
+        navigate('/');
+    };
+
     const handleProfileSubmit = (e) => {
         e.preventDefault();
         updateProfile(editForm);
@@ -245,6 +252,38 @@ function Profile() {
                             }}
                         >
                             🔔 Notifications Feed
+                        </button>
+
+                        {/* Logout Button */}
+                        <button
+                            onClick={handleLogout}
+                            style={{
+                                display: 'flex',
+                                alignItems: 'center',
+                                gap: '0.75rem',
+                                padding: '0.85rem 1.2rem',
+                                background: 'transparent',
+                                border: '1px solid rgba(239, 68, 68, 0.4)',
+                                color: '#ef4444',
+                                borderRadius: '0.75rem',
+                                cursor: 'pointer',
+                                fontWeight: 700,
+                                fontSize: '0.9rem',
+                                transition: 'all 0.2s',
+                                textAlign: 'left',
+                                marginTop: '1rem',
+                                width: '100%'
+                            }}
+                            onMouseEnter={(e) => {
+                                e.currentTarget.style.background = '#ef4444';
+                                e.currentTarget.style.color = 'white';
+                            }}
+                            onMouseLeave={(e) => {
+                                e.currentTarget.style.background = 'transparent';
+                                e.currentTarget.style.color = '#ef4444';
+                            }}
+                        >
+                            🚪 Sign Out of Account
                         </button>
                     </div>
 
